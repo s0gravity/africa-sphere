@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="act_report_xml_view_inherit" model="ir.ui.view">
+            <field name="name">report.xml.view.form.inherit</field>
+            <field name="model">ir.actions.report.xml</field>
+            <field name="inherit_id" ref="base.act_report_xml_view"/>
+            <field name="arch" type="xml">
+
+                <field name="attachment" position="after">
+                    <field name="is_product" />
+                </field>
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

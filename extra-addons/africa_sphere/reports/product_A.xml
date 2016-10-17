@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- start report layout -->
+        <template id="external_layout_A">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="africa_sphere.sphere_layout_header_A" />
+            <t t-raw="0" />
+            <t t-call="africa_sphere.sphere_layout_footer" />
+        </template>
+        <!--report layout header -->
+        <template id="sphere_layout_header_A">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img class="logo_es_A" t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!-- report layout footer -->
+        <template id="sphere_layout_footer">
+            <div class="footer">
+                <div class="text-center">
+                    <ul class="list-inline">
+                        <li><span class="page"/>/<span class="topage"/></li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+        <!-- end report layout -->
+        <!-- start report product A -->
+        <template id="product_A_document">
+            <t t-call="africa_sphere.external_layout_A">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <table class="table_product_A">
+                        <thead>
+                            <tr>
+                                <td>Country Phone Code</td>
+                                <td>Country name</td>
+                                <td>Central Bank Activity Code</td>
+                                <td>Central Bank Activity Main name</td>
+                                <td>activity_wording</td>
+                                <td>Company Name</td>
+                                <td>REGISTRATION NUMBER</td>
+                                <td>CAPITAL = SHARES</td>
+                                <td>TURNOVER YEAR-1</td>
+                                <td>TURNOVER YEAR-2</td>
+                                <td>NET RESULT YEAR-1</td>
+                                <td>NET RESULT YEAR-2</td>
+                                <td>@SPHERE ONGOING SCORING</td>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <tr t-foreach="o._get_product_A_infos()" t-as="line">
+                                <td class="text-center">
+                                    <span><t t-esc="line['country_phone_code']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['country_name']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['central_bank_activity_code']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['l_bank_activity_main']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['activity_wording']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['name']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['registration_number']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['capital']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['turnover_y1']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['turnover_y2']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['net_result_y1']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['net_result_y2']"/></span>
+                                </td>
+                                <td class="text-center">
+                                    <span><t t-esc="line['scoring']"/></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+        <template id="product_A_template">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'africa_sphere.product_A_document')"/>
+                </t>
+            </t>
+        </template>
+        <!-- end report product A -->
+        <!-- start report declaration -->
+        <report
+                id="product_A_report"
+                string="Product A"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="Product_A"
+                name="africa_sphere.product_A_template"
+                attachment="(object.product_id.name+'.pdf')"
+                multi = "0"
+        />
+        <record id="paperformat_product_A_report" model="report.paperformat">
+            <field name="name">Paperformat Product A</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">30</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="product_A_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_product_A_report"/>
+            <field name="is_product" eval="True"/>
+        </record>
+        <!-- end report declaration -->
+        <!-- start css template -->
+        <template id="minimal_layout_africa_sphere" inherit_id="report.minimal_layout" name="africa_sphere_reports minimal_layout">
+            <xpath expr='//link[@href="/web/static/lib/bootstrap/css/bootstrap.css"]' position="before">
+                <link rel="stylesheet" href="/africa_sphere/static/src/css/style.css"/>
+            </xpath>
+        </template>
+        <!-- end css template -->
+    </data>
+</openerp>

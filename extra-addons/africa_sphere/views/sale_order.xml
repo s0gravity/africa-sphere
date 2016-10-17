@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_sphere" model="ir.ui.view">
+            <field name="name">view.order.form.sphere</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                
+                <page string="Order Lines" position="after">
+                    <page string="SPHERE REPORTING">
+                        <notebook colspan="4">
+                            <page string="INFORMATIONS CLIENTS / REF. DE LA DEMANDE ">
+                                <group col="4">
+                                    <group colspan="2">
+                                        <field name="document_to"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="customer_internal_code"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="partners_ref"/>
+                                        <field name="request_date"/>
+                                        <field name="response_date"/>
+                                        <field name="response_delay"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="credit_rec"/>
+                                        <field name="credit_solicite"/>
+                                        <field name="credit_approval_percent"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="EVALUATION @SPHERES">
+                                <group col="4">
+                                    <group colspan="2">
+                                        <separator string="Forces" colspan="2"/>
+                                        <field name="strenght1"/>
+                                        <field name="strenght2"/>
+                                        <field name="strenght3"/>
+                                        <field name="strenght4"/>
+                                        <field name="strenght5"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <separator string="Faiblesses" colspan="2"/>
+                                        <field name="weakness1"/>
+                                        <field name="weakness2"/>
+                                        <field name="weakness3"/>
+                                        <field name="weakness4"/>
+                                        <field name="weakness5"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <separator string="Dynamisme à Court Terme" colspan="2"/>
+                                        <field name="short_term_dyn" nolabel="1"/>
+                                    </group>
+                                    <group colspan="2">
+                                        <separator string="Risques Potentiels à Court Terme" colspan="2"/>
+                                        <field name="short_term_risks" nolabel="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="CONCLUSIONS ET RECOMMANDATIONS">
+                                <group col="4">
+                                    <separator string="LES PRINCIPAUX PARTENAIRES" colspan="4"/>
+                                    <group colspan="4">
+                                        <field name="principal_partner_ids" nolabel="1" >
+                                            <tree string="LES PRINCIPAUX PARTENAIRES" editable="bottom">
+                                                <field name="type_id"/>
+                                                <field name="name"/>
+                                                <field name="country"/>
+                                                <field name="comment"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <separator string="COMMENTAIRES" colspan="4"/>
+                                    <group colspan="4">
+                                        <field name="comment_sphere" nolabel="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </page>
+                    
+                </page>
+
+
+
+
+            </field>
+        </record>
+
+                <record id="principal_partner_type_action" model="ir.actions.act_window">
+                    <field name="name">Types de partenaires</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">principal.partner.type</field>
+                    <field name="view_mode">tree,form</field>
+                </record>
+
+
+                <menuitem id="sphere_config_menu" name="Config SPHERE" parent="base.menu_base_config" groups="base.group_sale_manager,account.group_account_manager"/>
+                <menuitem id="principal_partner_type_menu" name="Types de partenaires" parent="sphere_config_menu" action="principal_partner_type_action" groups="base.group_sale_manager,account.group_account_manager"/>
+
+
+
+    </data>
+</openerp>

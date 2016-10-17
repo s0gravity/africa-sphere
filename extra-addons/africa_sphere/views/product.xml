@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="portnet_product_template_only_form_view" model="ir.ui.view">
+            <field name="name">portnet.product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <field name="type" position="after">
+                    <field name="is_report" attrs="{'invisible': ['|',('type','!=','service'),('sale_ok','=',False)]}"/>
+                    <field name="report_id" attrs="{'required':[('is_report','=',True),('sale_ok','=',True)],'invisible': ['|',('is_report','=',False),('type','!=','service'),('sale_ok','=',False)]}"/>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="portnet_product_template_tree_view" model="ir.ui.view">
+            <field name="name">portnet.product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+
+                <field name="state" position="before">
+                    <field name="is_report"/>
+                    <field name="report_id"/>
+                </field>
+
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

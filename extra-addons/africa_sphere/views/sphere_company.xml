@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record model="ir.ui.view" id="sphere_company_form_view">
+                <field name="name">sphere.company.form.view</field>
+                <field name="model">sphere.company</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Sociétés SPHERE" version="8.0" >
+                    	<sheet>
+                            <group col="4">
+                                <separator string="INFORMATIONS LEGALES" colspan="4"/>
+                                <group colspan="2">
+                                    <field name="name" />
+                                    <field name="sigle"/>
+                                    <field name="country_id"/>
+                                    <field name="city"/>
+                                    <field name="country_phone_code"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="creation_date" />
+                                    <field name="nb_years_existance"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="legal_form"/>
+                                    <field name="num_rccm_kbis"/>
+                                    <field name="registration_number"/>
+                                    <field name="central_bank_activity_code"/>
+                                    <field name="l_bank_activity_main"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="siege_social"/>
+                                    <field name="code_act"/>
+                                    <field name="name_act"/>
+                                    <field name="bp"/>
+                                    <field name="activity_wording"/>
+                                    <field name="tpype"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="maison_mere"/>
+                                    <field name="maison_weight"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="standard_email"/>
+                                    <field name="phone"/>
+                                    <field name="fax"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="geo_situation_address"/>
+                                    <field name="po_box"/>
+                                    <field name="direct_line"/>
+                                </group>
+                                <group colspan="2">
+                                    <field name="partner_id"/>
+                                </group>
+                                <notebook colspan="4">
+                                    <page string="HISTORIQUES / VUE SECTORIELLES">
+                                        <group col="4">
+                                            <field name="history" nolabel="1"/>
+                                        </group>
+                                    </page>
+                                    <page string="Principal contact">
+                                        <group col="4">
+                                            <group colspan="2">
+                                                <field name="ppal_contact"/>
+                                                <field name="ppal_function"/>
+                                            </group>
+                                            <group colspan="2">
+                                                <field name="ppal_email"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Dirigeants">
+                                        <group col="4">
+                                            <group colspan="4">
+                                                <field name="company_leader_ids" nolabel="1">
+                                                    <tree string="Dirigeants" editable="bottom">
+                                                        <field name="name"/>
+                                                        <field name="poste"/>
+                                                    </tree>
+                                                </field>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Exercices">
+                                        <group col="4">
+                                            <group colspan="4">
+                                                <field name="company_fiscalyear_ids" nolabel="1">
+                                                    <tree string="Exercices">
+                                                        <field name="fiscalyear_id"/>
+                                                    </tree>
+                                                    <form string="Exercises/Sociétés" version="8.0" >
+                                                        <sheet>
+                                                            <group col="4">
+                                                                <separator string="EXERCICE" colspan="4"/>
+                                                                 <group colspan="2">
+                                                                    <field name="fiscalyear_id"/>
+                                                                </group>
+                                                                <group colspan="2">
+                                                                    <separator string="" colspan="2"/>
+                                                                </group>
+                                                                <group colspan="2">
+                                                                    <field name="capital"/>
+                                                                    <field name="turnover_y1"/>
+                                                                    <field name="turnover_y2"/>
+                                                                </group>
+                                                                <group colspan="2">
+                                                                    <field name="net_result_y1"/>
+                                                                    <field name="net_result_y2"/>
+                                                                    <field name="scoring"/>
+                                                                </group>
+                                                                <separator string="ACTIONNARIAT ACTUEL" colspan="4"/>
+                                                                <group colspan="4">
+                                                                    <field name="company_shareholder_ids" nolabel="1">
+                                                                        <tree string="ACTIONNAIRES" editable="bottom">
+                                                                            <field name="name"/>
+                                                                            <field name="shares_number" sum="shares_number"/>
+                                                                            <field name="weight_percent" sum="weight_percent"/>
+                                                                            <field name="amount" sum="amount"/>
+                                                                        </tree>
+                                                                    </field>
+                                                                    <separator string="COMMENTAIRES SI CHANGEMENT INTERVENUS SUR LE CAPITAL SUR LES 5 DERNIERES ANNEES" colspan="4"/>
+                                                                    <field name="act_comment" nolabel="1"/>
+                                                                </group>
+                                                                <separator string="DONNES FINANCIERES ET COMPTABLES" colspan="4"/>
+                                                                <group colspan="2">
+                                                                    <field name="origin"/>
+                                                                </group>
+                                                                <group colspan="4">
+                                                                    <notebook colspan="4">
+                                                                        <page string="BILAN FONCTIONNEL EN MONNAIE LOCALE">
+                                                                            <notebook colspan="4">
+                                                                                <page string="ACTIF">
+                                                                                    <group col="4">
+                                                                                        <group colspan="4">
+                                                                                            <separator string="ACTIF IMMOBILISE" colspan="4"/>
+                                                                                            <field name="total_actif_immobilise"  readonly="1" />
+                                                                                            <field name="tr_bt"/>
+                                                                                            <field name="fdc_br_log"/>
+                                                                                            <field name="ci"/>
+                                                                                            <field name="miia"/>
+                                                                                            <field name="mdbmi"/>
+                                                                                            <field name="mdtem"/>
+                                                                                            <field name="af"/>
+                                                                                            <field name="other_actif"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                        <separator string="ACTIF CIRCULANTS" colspan="4"/>
+                                                                                        <field name="total_actif_circulant"  readonly="1" />
+                                                                                        <field name="stock"/>
+                                                                                        <field name="fav"/>
+                                                                                        <field name="customers"/>
+                                                                                        <field name="cfes"/>
+                                                                                        <field name="ac"/>
+                                                                                        <field name="cca"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                        <separator string="TRESORERIE ACTIF" colspan="4"/>
+                                                                                        <field name="total_treso_actif" readonly="1" />
+                                                                                        <field name="bcctdp"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                        <separator string="TOTAL ACTIF" colspan="4"/>
+                                                                                        <field name="total_actif" readonly="1"/>
+                                                                                        </group>
+                                                                                    </group>
+
+                                                                                </page>
+                                                                                <page string="PASSIF">
+                                                                                    <group col="4">
+                                                                                        <group colspan="4">
+                                                                                            <separator string="CAPITAUX PERMANENTS" colspan="4"/>
+                                                                                            <field name="total_capitaux_perman"  readonly="1" />
+                                                                                            <field name="cs"/>
+                                                                                            <field name="act_cna"/>
+                                                                                            <field name="ran"/>
+                                                                                            <field name="ra"/>
+                                                                                            <field name="reserves"/>
+                                                                                            <field name="arpc"/>
+                                                                                            <field name="df"/>
+                                                                                            <field name="aycpr"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                            <separator string="PASSIF CIRCULANT" colspan="4"/>
+                                                                                            <field name="total_passif_circulant"  readonly="1" />
+                                                                                            <field name="cap"/>
+                                                                                            <field name="dfr"/>
+                                                                                            <field name="dfes"/>
+                                                                                            <field name="ad"/>
+                                                                                            <field name="pca"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                            <separator string="TRESORERIE PASSIF" colspan="4"/>
+                                                                                            <field name="total_treso_passif"  readonly="1" />
+                                                                                            <field name="bcc"/>
+                                                                                        </group>
+                                                                                        <group colspan="4">
+                                                                                            <separator string="TOTAL PASSIF" colspan="4"/>
+                                                                                            <field name="total_passif"  readonly="1"/>
+                                                                                        </group>
+                                                                                    </group>
+
+                                                                                </page>
+                                                                            </notebook>
+
+                                                                        </page>
+                                                                        <page string="COMPTE DE RESULTAT EN MONNAIE LOCALE">
+                                                                            <notebook colspan="4">
+                                                                                <page string="CHARGES">
+                                                                                    <group colspan="4">
+                                                                                        <field name="ampmc"/>
+                                                                                        <field name="vds"/>
+                                                                                        <separator string="Autres Charges" colspan="4"/>
+                                                                                        <field name="other_charges" readonly="1"/>
+                                                                                        <field name="td"/>
+                                                                                        <field name="seosa"/>
+                                                                                        <field name="seosb"/>
+                                                                                        <field name="ac1"/>
+                                                                                        <separator string="Taxes" colspan="4"/>
+                                                                                        <field name="it"/>
+                                                                                        <separator string="CHARGES DU PERSONNEL" colspan="4"/>
+                                                                                        <field name="cp"/>
+                                                                                        <separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
+                                                                                        <field name="ap"/>
+                                                                                        <separator string="TOTAL CHARGES D'EXPLOITATION" colspan="4"/>
+                                                                                        <field name="total_charges_exp"/>
+                                                                                        <field name="reb"/>
+                                                                                         <separator string="Charges Financières" colspan="4"/>
+                                                                                        <field name="cf"/>
+                                                                                        <field name="rfb"/>
+                                                                                        <separator string="Charges HAD" colspan="4"/>
+                                                                                        <field name="ch"/>
+                                                                                        <field name="rhb"/>
+                                                                                        <separator string="TOTAL DES CHARGES" colspan="4"/>
+                                                                                        <field name="total_charges" readonly="1"/>
+                                                                                        <field name="islr"/>
+                                                                                        <separator string="RESULTAT BENEFICIAIRE" colspan="4"/>
+                                                                                        <field name="rb" readonly="1"/>
+                                                                                        <separator string="TOTAL DES EFFECTIFS ET SALAIRES" colspan="4"/>
+                                                                                        <field name="total_es"/>
+                                                                                    </group>
+                                                                                </page>
+                                                                                <page string="PRODUITS">
+                                                                                    <group colspan="4">
+                                                                                        <field name="vmp"/>
+                                                                                        <field name="stf"/>
+                                                                                        <separator string="AUTRES PRODUITS" colspan="4"/>
+                                                                                        <field name="other_products" readonly="1"/>
+                                                                                        <field name="pa"/>
+                                                                                        <field name="subv"/>
+                                                                                        <field name="ap1"/>
+                                                                                        <separator string="TRANSFERT DE CHARGES" colspan="4"/>
+                                                                                        <field name="tdc"/>
+                                                                                        <separator string="REPRISE D'AMMORTISSEMENTS ET PROVISIONS" colspan="4"/>
+                                                                                        <field name="rap"/>
+                                                                                        <separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
+                                                                                        <field name="ap"/>
+                                                                                        <separator string="Total Produits d'Exploitation" colspan="4"/>
+                                                                                        <field name="total_exp_products"/>
+                                                                                        <field name="red"/>
+                                                                                         <separator string="Produits Financiers" colspan="4"/>
+                                                                                        <field name="pf"/>
+                                                                                        <field name="rfd"/>
+                                                                                        <separator string="Produits HAD" colspan="4"/>
+                                                                                        <field name="ph"/>
+                                                                                        <field name="rhd"/>
+                                                                                        <separator string="TOTAL DES PRODUITS" colspan="4"/>
+                                                                                        <field name="total_products" readonly="1"/>
+                                                                                        <separator string="RESULTAT DEFICITAIRE" colspan="4"/>
+                                                                                        <field name="rd" readonly="1"/>
+                                                                                    </group>
+                                                                                </page>
+                                                                            </notebook>
+
+                                                                        </page>
+                                                                    </notebook>
+                                                                </group>
+                                                            </group>
+                                                        </sheet>
+                                                    </form>
+                                                </field>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Other">
+                                        <field name="other"/>
+                                    </page>
+
+                                </notebook>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            
+           <record model="ir.ui.view" id="sphere_company_tree_view">
+                <field name="name">sphere.company.tree.view</field>
+                <field name="model">sphere.company</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Sociétés SPHERE">
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="country_id"/>
+                        <field name="country_phone_code"/>
+                        <field name="registration_number"/>
+                        <field name="standard_email"/>
+                        <field name="phone"/>
+                        <field name="fax"/>
+                        <field name="direct_line"/>
+                    </tree>
+                </field>
+            </record>
+
+
+            <record model="ir.actions.act_window" id="action_sphere_company_tree_view">
+                <field name="name">Sociétés SPHERE</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">sphere.company</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+            </record>
+
+
+            <menuitem id="sphere_company_menu" name="Sociétés SPHERE" parent="base.menu_sales" action="action_sphere_company_tree_view" groups="base.group_sale_manager,account.group_account_manager"/>
+
+
+         <!-- Début Vue search -->
+            <record id="sphere_company_search_view" model="ir.ui.view">
+                <field name="name">sphere.company.search.view</field>
+                <field name="model">sphere.company</field>
+                <field name="arch" type="xml">
+                    <search>
+
+                        <field name="name"/>
+                        <field name="partner_id"/>
+
+                    </search>
+                </field>
+            </record>
+            <!-- Fin Vue search -->
+
+
+    </data>
+</openerp>

@@ -1,0 +1,866 @@
+/* start style for product A */
+.logo_es_A{
+    height: 70px;
+    width: 130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table_product_A td{
+    border: 1px solid black;
+    font-size: 9px;
+    text-align: center;
+}
+
+.table_product_A thead td {
+    background-color: #00B050;
+    height: 45px;
+    vertical-align: middle;
+    padding: 3px;
+    width: 77px;
+    font-weight: bold;
+}
+
+.table_product_A thead td:nth-child(4), .table_product_A thead td:nth-child(5) {
+    width: 170px;
+}
+
+.table_product_A thead td:nth-child(6) {
+    width: 270px;
+    font-size: 12px;
+}
+
+.table_product_A thead td:nth-child(7) {
+    background-color: #FFFF00;
+}
+
+.table_product_A thead td:nth-child(n+8) {
+    color: blue;
+}
+
+.table_product_A .sale_tbody tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_product_A .sale_tbody td{
+    height: 23px;
+    padding: 2px;
+    vertical-align: middle;
+}
+
+.table_product_A .sale_tbody td:nth-child(4), .table_product_A .sale_tbody td:nth-child(5), .table_product_A .sale_tbody td:nth-child(6){
+    text-align: left;
+}
+
+.table_product_A .sale_tbody td:nth-child(6){
+    font-weight: bold;
+}
+
+.footer{
+    font-size: 11px;
+}
+/* end style for product A */
+
+/* start style for product B */
+/* style for header of report */
+.logo_es_B{
+    height: 40px;
+    width: 100px;
+    position: absolute;
+    left: 430px;
+}
+
+.common_style{
+    font-size: 11px;
+    page-break-inside: avoid ;
+}
+
+.common_style td{
+    vertical-align: middle;
+    height: 17.2px;
+}
+
+.table_provider{
+    position: absolute;
+}
+
+.table_provider th, .table_provider td{
+    border: 1px solid black;
+    text-align: center;
+    width: 150px;
+}
+
+.table_current_date{
+    position: absolute;
+    left: 780px;
+}
+
+.table_current_date tr:nth-child(3) td{
+    border: none;
+    width: 110px;
+    font-weight: bold;
+}
+
+.table_current_date th, .table_current_date td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+.table_prototype{
+    border: 1px solid black;
+    position: absolute;
+    top: 50px;
+}
+
+.table_prototype th{
+    text-align: center;
+    background-color: #DCDAFF;
+}
+
+.table_prototype tr td:nth-child(1){
+    width: 400px;
+}
+
+.table_prototype tr td:nth-child(2){
+    width: 260px;
+}
+
+.table_prototype tr td:nth-child(3){
+    width: 237px;
+}
+/* style for body of report */
+/* table info company */
+.table_legal_information td {
+    font-weight: bold;
+    padding-left: 3px;
+    vertical-align: middle;
+}
+
+.table_legal_information tr:nth-child(2) td, .table_legal_information tr:nth-child(3) td {
+    border: 1.5px solid black;
+}
+
+.table_legal_information tr:nth-child(n+4) td:nth-child(1), .table_legal_information tr:nth-child(n+4) td:nth-child(n+3){
+    border-right: 1.5px solid black;
+}
+
+.table_legal_information tr:nth-child(n+4) td{
+    border-bottom: none;
+}
+
+.table_legal_information tr:nth-child(n+4) td:nth-child(2) {
+    border-right: none;
+}
+
+.table_legal_information tr:nth-child(n+4) td:nth-child(3) {
+    border-left: none;
+    font-weight: normal;
+}
+
+.table_legal_information tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_legal_information tr:nth-child(1) td {
+    border: none;
+    background-color: yellow;
+    text-align: center;
+}
+
+.table_legal_information tr td:nth-child(1) {
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.table_legal_information tr:nth-child(n+2) td:nth-child(1) {
+    background-color: white;
+}
+
+.table_legal_information tr td:nth-child(n+4) {
+    text-align: center;
+}
+
+.table_legal_information tr:nth-last-child(1) {
+    border-bottom: 1.5px solid black;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(1) {
+    width: 15px;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(2) {
+    width: 190px;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(3) {
+    width: 250px;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(4) {
+    width: 170px;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(6) {
+    width: 200px;
+}
+
+.table_legal_information tr:nth-child(2) td:nth-child(5), .table_legal_information tr:nth-child(2) td:nth-child(7) {
+    width: 60px;
+}
+
+.table_legal_information tr:nth-child(4) td:nth-child(4){
+    text-align: justify;
+    padding: 2.5px;
+    vertical-align: top;
+    border-bottom: 1px solid black;
+    font-weight: normal;
+}
+
+.info_align_right{
+    padding-left: 20px;
+}
+
+.info_normal_bold{
+    font-weight: normal;
+}
+/* table actionnariat actuel */
+.table_current_actionnariat td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table_current_actionnariat tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_current_actionnariat tr:nth-child(n+2) td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.table_current_actionnariat tr:nth-child(2) td, .table_current_actionnariat tr:nth-last-child(1) td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.table_current_actionnariat tr:nth-child(2) td:nth-child(1) {
+    width: 15px;
+}
+
+.table_current_actionnariat tr:nth-child(2) td:nth-child(2) {
+    width: 200px;
+}
+
+.table_current_actionnariat tr:nth-child(2) td:nth-child(n+3) {
+    width: 120px;
+}
+
+.table_current_actionnariat tr:nth-child(2) td:nth-child(6) {
+    width: 330px;
+}
+
+.table_current_actionnariat tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_current_actionnariat tr:nth-child(n+2) td:nth-child(1) {
+    background-color: white;
+    border: none;
+}
+
+.table_current_actionnariat tr:nth-child(2) td, .table_current_actionnariat tr:nth-last-child(1) td {
+    font-weight: bold;
+    background-color: #DCDAFF;
+}
+
+.table_current_actionnariat tr:nth-child(n+3) td:nth-child(2){
+    text-align: left;
+    padding-left: 3px;
+}
+
+.table_current_actionnariat tr:nth-child(3) td:nth-child(6){
+    padding: 2px;
+    vertical-align: top;
+    text-align: justify;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+/* table information client */
+.table_info_customer_ref_order{
+    font-size: 10px;
+}
+.table_info_customer_ref_order tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_info_customer_ref_order tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(1){
+    width: 15px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(2){
+    width: 180px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(3){
+    width: 240px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(4){
+    width: 260px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(5){
+    width: 100px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(6){
+    width: 100px;
+}
+
+.table_info_customer_ref_order tr:nth-child(2) td:nth-child(2n+3){
+    text-align: left;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(n+4){
+    font-weight: bold;
+}
+
+.table_info_customer_ref_order tr:nth-child(1) td:nth-child(n+2), .table_info_customer_ref_order tr:nth-last-child(1) td:nth-child(n+2) {
+    border-bottom: 1.5px solid black;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(1), .table_info_customer_ref_order tr:nth-child(n+2) td:nth-last-child(1){
+    border-right: 1.5px solid black;
+}
+
+.table_info_customer_ref_order tr:nth-last-child(1) td{
+    color: #DCDAFF;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(4){
+    text-align: right;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(2n+1){
+    text-align: center;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(2){
+    padding-left: 3px;
+}
+
+.table_info_customer_ref_order tr:nth-child(n+2) td:nth-child(1) {
+    background-color: white;
+}
+
+/* table evaluation spheres */
+.table_evaluation_sphere tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_evaluation_sphere tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_evaluation_sphere tr:nth-child(n+2) td {
+    border: 1px solid black;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(n+2) {
+    font-weight: bold;
+    text-align: center;
+    padding: 1px;
+    vertical-align: middle;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(1){
+    width: 15px;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(2){
+    background-color: green;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(3){
+    background-color: yellow;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(4){
+    background-color: green;
+    width: 50px;
+    font-size: 13px;
+    border: 2px double black ;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(5){
+    background-color: orange;
+}
+
+.table_evaluation_sphere tr:nth-child(2) td:nth-child(6){
+    background-color: red;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td, .table_evaluation_sphere tr:nth-child(4) td, .table_evaluation_sphere tr:nth-child(10) td{
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_evaluation_sphere tr:nth-child(n+5) td:nth-child(2), .table_evaluation_sphere tr:nth-child(n+5) td:nth-child(4){
+    text-align: center;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td:nth-child(n+2){
+    width: 40px;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td:nth-child(2), .table_evaluation_sphere tr:nth-child(3) td:nth-child(8){
+    width: 20px;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td:nth-child(n+9){
+    width: 53px;
+}
+
+.table_evaluation_sphere tr:nth-child(n+2) td:nth-child(1){
+    background-color: white;
+    border: none;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td{
+    background-color: white;
+    border: none;
+    color: white;
+}
+
+.table_evaluation_sphere tr:nth-child(3) td:nth-child(1), .table_evaluation_sphere tr:nth-child(3) td:nth-last-child(1){
+    border-right: 1px solid black;
+}
+
+.table_evaluation_sphere tr:nth-child(4) td{
+    border-top: none;
+    vertical-align: text-top;
+}
+/* table conslusion and recommandations */
+.table_conclusions_recommandations_2 tr:nth-child(n+2) td:nth-child(n+2){
+    border: 1px solid black;
+}
+
+.table_conclusions_recommandations_2 tr:nth-child(2n+2) td:nth-child(n+2){
+    background-color: #DCDAFF;
+}
+
+.table_conclusions_recommandations_2 tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_conclusions_recommandations_2 tr:nth-child(3) td:nth-child(2){
+    min-width: 890px;
+    padding: 2px;
+    text-align: justify;
+}
+
+.table_conclusions_recommandations tr:nth-child(2) td:nth-child(1){
+    min-width: 15px;
+}
+
+/*
+.table_conclusions_recommandations tr:nth-child(n+2) td:nth-child(n+2){
+    border: 1px solid black;
+}
+
+.table_conclusions_recommandations tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_conclusions_recommandations tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_conclusions_recommandations tr:nth-child(2) td, .table_conclusions_recommandations tr:nth-child(3) td {
+    font-weight: bold;
+    text-align: center;
+    background-color: #DCDAFF;
+}
+
+.table_conclusions_recommandations tr:nth-last-child(1) td{
+    background-color: #DCDAFF;
+}
+
+.table_conclusions_recommandations tr:nth-child(3) td:nth-child(n+2){
+    min-width: 140px;
+}
+
+.table_conclusions_recommandations tr:nth-child(3) td:nth-child(3){
+    min-width: 200px;
+}
+
+.table_conclusions_recommandations tr:nth-child(2) td:nth-child(3){
+    min-width: 410px;
+}
+
+.table_conclusions_recommandations tr:nth-child(2) td:nth-child(1){
+    min-width: 15px;
+}
+
+.table_conclusions_recommandations tr:nth-child(n+2) td:nth-child(1){
+    background-color: white;
+    border: none;
+}
+
+.table_conclusions_recommandations tr:nth-child(n+4) td{
+    padding-left: 2px;
+}
+*/
+/* table donnes financiers & compatbles */
+.table_donnees_financiers_comptables td{
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(2n+2){
+    background-color: #DCDAFF;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(1) td, .table_donnees_financiers_comptables tr:nth-child(2) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(2) td:nth-child(1){
+    width: 15px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+2) td:nth-child(1){
+    background-color: white;
+    border: none;
+}
+
+.origin_data{
+    border: 2px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(3) td, .table_donnees_financiers_comptables tr:nth-child(4) td, .table_donnees_financiers_comptables tr:nth-child(24) td{
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(3),.table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(4),.table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(8),.table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(9){
+    text-align: right;
+    padding-right: 3px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+2){
+    width: 92px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+4) td:nth-child(6){
+    width: 3px;
+    background-color: #DCDAFF;
+    border: none;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(5), .table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(10){
+    width: 30px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(7){
+    width: 200px;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-child(n+5) td:nth-child(7){
+    text-align: left;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+3) td:nth-child(n+2){
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(3) td, .table_donnees_financiers_comptables tr:nth-child(4) td, .table_donnees_financiers_comptables tr:nth-child(5) td, .table_donnees_financiers_comptables tr:nth-child(14) td, .table_donnees_financiers_comptables tr:nth-child(21) td, .table_donnees_financiers_comptables tr:nth-child(23) td{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(3) td{
+    background-color: #DCDAFF;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(26) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(48) td:nth-child(n+2){
+    background-color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2){
+    background-color: #DCDAFF;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(26) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(48) td:nth-child(n+6){
+    background-color: dodgerblue;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(n+24) td{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(30) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(31) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(32) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(33) td:nth-child(n+2){
+    border-top: none;
+    border-bottom: none;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(7){
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(24) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(7), .table_donnees_financiers_comptables tr:nth-last-child(2) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-last-child(2) td:nth-child(7), .table_donnees_financiers_comptables tr:nth-last-child(4) td:nth-child(2), .table_donnees_financiers_comptables tr:nth-last-child(4) td:nth-child(7){
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(24) td:nth-child(2){
+    background-color: #DCDAFF;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(40) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(40) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(47) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(49) td:nth-child(2){
+    font-weight: bold;
+    text-align: center;
+}
+
+/* style table radios spheres*/
+
+.table_ratios_spheres_title td{
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_ratios_spheres_title tr:nth-child(1) td:nth-child(1){
+    width: 15px;
+}
+
+.table_ratios_spheres_title tr:nth-child(1) td:nth-child(2){
+    width: 1000px;
+}
+
+.table_ratios_spheres_title tr:nth-child(n+2) td{
+    background-color: white;
+}
+
+.table_ratios_spheres_title tr:nth-child(3) td:nth-child(n+2){
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.table_ratios_spheres_degee{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table_ratios_spheres_degee td{
+    border: 1px solid black;
+    text-align: center;
+    width: 175px;
+    font-weight: bold;
+}
+
+.table_ratios_spheres_degee tr:nth-child(n+2) td:nth-child(1){
+    border: none;
+}
+
+.table_ratios_spheres_degee tr:nth-child(1) td:nth-child(3){
+    background-color: green;
+    width: 60px;
+}
+
+.table_ratios_spheres_degee tr:nth-child(2) td:nth-child(3){
+    background-color: orange;
+}
+
+.table_ratios_spheres_degee tr:nth-child(3) td:nth-child(3){
+    background-color: red;
+}
+
+.table_ratios_spheres_degee tr td:nth-child(3){
+    width: 80px;
+}
+
+.bg_fleche_img{
+    background-image: url(../img/fleche.png);
+    background-repeat: no-repeat;
+    background-size: 10px 35px;
+    Background-position : center center ;
+    color: white;
+}
+
+.table_ratios_spheres td {
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table_ratios_spheres tr:nth-child(1) td, .table_ratios_spheres tr:nth-last-child(1) td{
+    font-weight: bold;
+    background-color: #DCDAFF;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(1), .table_ratios_spheres tr:nth-child(1) td:nth-child(8){
+    border: none;
+    width: 270px;
+    background-color: white;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(1){
+    height: 40px;
+}
+
+.table_ratios_spheres tr:nth-child(1) td{
+    width: 90px;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(4), .table_ratios_spheres tr:nth-child(1) td:nth-child(11){
+    width: 35px;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(5), .table_ratios_spheres tr:nth-child(1) td:nth-child(7){
+    width: 15px;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(6){
+    width: 5px;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(9){
+    border: none;
+}
+
+.table_ratios_spheres tr:nth-child(1) td:nth-child(5), .table_ratios_spheres tr:nth-child(1) td:nth-child(6), .table_ratios_spheres tr:nth-child(1) td:nth-child(7){
+    background-color: white;
+    border:none;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(7), .table_ratios_spheres tr:nth-child(2) td:nth-child(8), .table_ratios_spheres tr:nth-child(3) td:nth-child(4) , .table_ratios_spheres tr:nth-child(4) td:nth-child(4){
+    border: none;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(8){
+    border-right: 1px solid black;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(7){
+    border-bottom: 1px solid black;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(1), .table_ratios_spheres tr:nth-child(3) td:nth-child(1){
+    text-align: left;
+}
+
+.table_ratios_spheres tr:nth-child(2) td:nth-child(5), .table_ratios_spheres tr:nth-child(2) td:nth-child(6){
+    vertical-align: top;
+}
+
+.ratios_34 tr:nth-child(1) td{
+    border: none;
+    background-color: white;
+}
+
+.ratios_34 tr:nth-child(1) td:nth-child(1){
+    height: auto;
+}
+
+.ratios_34 tr:nth-child(2) td:nth-child(9){
+    border-top: 1px solid black ;
+}
+
+.ratios_78 tr:nth-child(2) td:nth-child(8){
+    width: 0px;
+}
+
+.ratios_910 tr:nth-child(2) td:nth-child(1), .ratios_910 tr:nth-child(3) td:nth-child(1), .ratios_910 tr:nth-child(4) td:nth-child(1){
+    border: none;
+    text-align: center;
+}
+
+.ratios_910 tr:nth-child(2) td:nth-child(1){
+    border-bottom: 1px solid black;
+}
+
+.ratios_13 tr td:nth-child(1){
+    text-align: left;
+}
+
+.ratios_13 tr td:nth-last-child(1){
+    text-align: center;
+}
+
+.ratios_1112 tr:nth-child(5) td{
+    background-color: #DCDAFF;
+    font-weight: bold;
+}
+
+.ratios_1112 tr:nth-child(6) td{
+    color: blue;
+}
+
+.ratios_1112 tr:nth-child(6) td:nth-child(4n+1){
+    border: none;
+    background-color: white;
+}
+
+.table_end_report{
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding: 2px;
+    width: 900px;
+    font-size: 8px;
+    margin-top: 80px;
+
+}
+
+
+/* end style for product B */
+
+/*
+standard style for table
+.table_conclusions_recommandations tr:nth-child(n+2) td:nth-child(n+2){
+    border: 1px solid black;
+}
+
+.table_conclusions_recommandations tr:nth-child(2n+1){
+    background-color: #DCDAFF;
+}
+
+.table_conclusions_recommandations tr:nth-child(1) td {
+    background-color: yellow;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_conclusions_recommandations tr:nth-child(2) td:nth-child(1){
+    width: 15px;
+}
+
+.table_conclusions_recommandations tr:nth-child(n+2) td:nth-child(1){
+    background-color: white;
+    border: none;
+}
+*/

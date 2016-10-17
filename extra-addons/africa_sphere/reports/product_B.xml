@@ -1,0 +1,1519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- start report layout -->
+        <template id="external_layout_B">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="africa_sphere.sphere_layout_header_B" />
+            <t t-raw="0" />
+            <t t-call="africa_sphere.sphere_layout_footer" />
+        </template>
+        <!--report layout header -->
+        <template id="sphere_layout_header_B">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img class="logo_es_B" t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+                        <table class="table_provider common_style">
+                            <tr><th>PROVIDER</th></tr>
+                            <tr><td>info@africa-sphere.com</td></tr>
+                        </table>
+                        <table class="table_current_date common_style">
+                            <tr><th>DATE &amp; HEURE</th></tr>
+                            <tr><td><span><t t-esc="o._get_header_infos()['current_date']" /></span></td></tr>
+                            <tr><td><span><t t-esc="o._get_header_infos()['current_year']" /></span></td></tr>
+                        </table>
+                        <table class="table_prototype common_style">
+                            <tr><th colspan="3">@SPHERES PROTOTYPE &lt;==&gt; CREDIT RISK INFORMATION</th></tr>
+                            <tr>
+                                <td><strong>A</strong> = INFORMATIONS LEGALES</td><td><strong>D</strong> = EVALUATION @SPHERES</td><td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>B</strong> = ACTIONNARIAT ACTUEL</td><td><strong>E</strong> = CONCLUSIONS &amp; RECOMMANDATIONS</td><td><strong>G</strong> = LES RATIOS @SPHERE</td>
+                            </tr>
+                            <tr>
+                                <td><strong>C</strong> = INFORMATIONS CLIENTS / REF. DE LA DEMANDE</td><td><strong>F</strong> = DONNEES COMPTABLES &amp; FINANCIERES</td><td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!-- start report product B -->
+        <template id="product_B_document">
+            <t t-call="africa_sphere.external_layout_B">
+                <t t-set="i" t-value="0"/>
+                <div class="page">
+                    <t t-foreach="o._get_product_B_infos()" t-as="company">
+                        <t t-if="i!=0">
+                            <p style="page-break-after:always;">   </p>
+                        </t>
+                        <!--t t-if="i&lt;2"-->
+                        <!--t t-if="i==0"-->
+                        <table class="table_product_B">
+                            <table class="table_legal_information common_style">
+                                <tr>
+                                    <td><span class="text_title">A</span></td><td colspan="6"><span class="text_title">INFORMATIONS LEGALES</span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Dénomination</td>
+                                    <td><span><t t-esc="company['name']"/></span></td>
+                                    <td>ANNEE DE CREATION</td>
+                                    <td><span><t t-esc="company['creation_date']"/></span></td>
+                                    <td>DUREE EXISTENCE EN ANNEES</td>
+                                    <td><span><t t-esc="company['nb_years_existance']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Sigle</td>
+                                    <td><span><t t-esc="company['sigle']"/></span></td>
+                                    <td colspan="4">HISTORIQUES / VUE SECTORIELLES</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Forme Légale</td>
+                                    <td><span><t t-esc="company['legal_form']"/></span></td>
+                                    <td colspan="4" rowspan="16"><span><t t-esc="company['history']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Numéro d'enregistrement</td>
+                                    <td><span><t t-esc="company['registration_number']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Siège Social</td>
+                                    <td><span><t t-esc="company['siege_social']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Code Activité BANQ. CENTR.</td>
+                                    <td><span><t t-esc="company['code_act']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Nom Activité BANQ. CENTR.</td>
+                                    <td><span><t t-esc="company['name_act']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>BP</td>
+                                    <td><span><t t-esc="company['bp']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Tél.:</td>
+                                    <td><span><t t-esc="company['phone']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Fax.:</td>
+                                    <td><span><t t-esc="company['fax']"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><strong>Maison Mère</strong></td>
+                                    <td><strong class="info_align_right">Poids des Actions en %</strong></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><span class="info_normal_bold"><t t-esc="company['maison_mere']"/></span></td>
+                                    <td><span class="info_align_right"><t t-esc="o.sep_f(company['maison_weight'])"/></span><t t-if="company['maison_weight']">%</t></td>
+                                </tr>
+                                <t t-set="leader" t-value="3"/>
+                                <t t-set="m" t-value="1"/>
+                                <t t-set="len_tab" t-value="len(company['company_leader_ids'])"/>
+                                <t t-foreach="len_tab" t-as="l">
+                                    <t t-if="l &lt; leader">
+                                        <tr>
+                                            <td></td>
+                                            <td><strong>Dirigeant <t t-esc="m"/></strong></td>
+                                            <td><strong class="info_align_right">Fonction</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><span class="info_normal_bold"><t t-esc="company['company_leader_ids'][l].name"/></span></td>
+                                            <td><span class="info_align_right"><t t-esc="company['company_leader_ids'][l].poste"/></span></td>
+                                        </tr>
+                                        <t t-set="m" t-value="m+1"/>
+                                    </t>
+                                </t>
+                                <t t-if="len_tab &lt; leader">
+                                    <t t-set="add_loop" t-value="leader-len_tab"/>
+                                </t>
+                                <t t-if="add_loop &gt; 0">
+                                    <t t-foreach="add_loop" t-as="l">
+                                        <tr>
+                                            <td></td>
+                                            <td><strong>Dirigeant <t t-esc="m"/></strong></td>
+                                            <td><strong class="info_align_right">Fonction</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <t t-set="m" t-value="m+1"/>
+                                    </t>
+                                </t>
+                            </table>
+                            <table class="table_current_actionnariat common_style">
+                                <tr class="text_title">
+                                    <td>B</td>
+                                    <td colspan="5">ACTIONNARIAT ACTUEL</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Nombre de Parts</td>
+                                    <td>Poids en %</td>
+                                    <td>MONTANTS</td>
+                                    <td>COMMENTAIRES SI CHANGEMENT INTERVENUS SUR LE CAPITAL SUR LES 5 DERNIERS ANNEES</td>
+                                </tr>
+                                <t t-set="k" t-value="0"/>
+                                <t t-set="shares_number_total" t-value="0"/>
+                                <t t-set="weight_percent_total" t-value="0"/>
+                                <t t-set="amount_total" t-value="0"/>
+
+                                <t t-set="holder" t-value="6"/>
+                                <t t-set="m" t-value="1"/>
+                                <t t-set="len_tab" t-value="len(company['company_shareholder_ids'])"/>
+                                <t t-foreach="len_tab" t-as="l">
+                                    <t t-if="l &lt; holder">
+                                        <tr>
+                                            <td></td>
+                                            <td><strong>ACTIONNAIRE N° <t t-esc="k+1"/></strong></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <t t-if="l==0">
+                                                <td rowspan="13"><span><t t-esc="company['act_comment']"/></span></td>
+                                            </t>
+
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><span><t t-esc="company['company_shareholder_ids'][l].name"/></span></td>
+                                            <td><span><t t-esc="o.sep_i(company['company_shareholder_ids'][l].shares_number)"/></span></td>
+                                            <td><span><t t-esc="o.sep_f(company['company_shareholder_ids'][l].weight_percent)"/></span>%</td>
+                                            <td><span><t t-esc="o.sep_i(company['company_shareholder_ids'][l].amount)"/></span></td>
+                                        </tr>
+                                        <t t-set="m" t-value="m+1"/>
+                                        <t t-set="shares_number_total" t-value="company['company_shareholder_ids'][l].shares_number+shares_number_total"/>
+                                        <t t-set="weight_percent_total" t-value="company['company_shareholder_ids'][l].weight_percent+weight_percent_total"/>
+                                        <t t-set="amount_total" t-value="company['company_shareholder_ids'][l].amount+amount_total"/>
+                                        <t t-set="k" t-value="k+1"/>
+                                    </t>
+                                </t>
+                                <t t-if="len_tab &lt; holder">
+                                    <t t-set="add_loop" t-value="holder-len_tab"/>
+                                </t>
+                                <t t-if="add_loop &gt; 0">
+                                    <t t-foreach="add_loop" t-as="l">
+                                        <tr>
+                                            <td></td>
+                                            <t t-if="m!=6">
+                                                <td><strong>ACTIONNAIRE N° <t t-esc="m"/></strong></td>
+                                            </t>
+                                            <t t-if="m==6">
+                                                <td><strong>Autres (&lt;20% du capital)</strong></td>
+                                            </t>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <t t-set="m" t-value="m+1"/>
+                                    </t>
+                                </t>
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL DU CAPITAL</td>
+                                    <td><span><t t-esc="o.sep_i(shares_number_total)"/></span></td>
+                                    <td><span><t t-esc="o.sep_f(weight_percent_total)"/></span>%</td>
+                                    <td><span><t t-esc="o.sep_i(amount_total)"/></span></td>
+                                </tr>
+                            </table>
+                            <table class="table_info_customer_ref_order common_style">
+                                <tr>
+                                    <td>C</td>
+                                    <td colspan="5">INFORMATIONS CLIENTS / REF. DE LA DEMANDE</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>DOCUMENT A L'USAGE EXCLUSIF DE</td>
+                                    <td><strong><span t-field="o.document_to"/></strong></td>
+                                    <td>CODE CLIENT INTERNE</td>
+                                    <td><span t-field="o.customer_internal_code"/></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Référence Clients / Ref.De la Commande</td>
+                                    <td><span t-field="o.partners_ref"/></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Date de la Requete</td>
+                                    <td><span t-field="o.request_date"/></td>
+                                    <td>ENCOURS CREDIT SOLLICITE</td>
+                                    <td><span t-field="o.credit_solicite"/></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Date de Réponse de @SHPERES</td>
+                                    <td><span t-field="o.response_date"/></td>
+                                    <td>ENCOURS CREDIT RECOMMANDE PAR @SPHERES</td>
+                                    <td><span t-field="o.credit_rec"/></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Delais de Réponse (en Jours)</td>
+                                    <td><span t-field="o.response_delay"/></td>
+                                    <td>% Accord Credit @SPHERES</td>
+                                    <td><span t-field="o.credit_approval_percent"/>%</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>text</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="table_evaluation_sphere common_style">
+                                <tr>
+                                    <td>D</td>
+                                    <td colspan="13">EVALUATION @SPHERES</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3">PAS DE RISQUE A COURT TERME = @SPHERES A</td>
+                                    <td colspan="3">RISQUE ACCEPTABLE = @SPHERES B</td>
+                                    <td rowspan="2">@SPHERES A3</td>
+                                    <td colspan="3">RISQUE ELEVE = @SPHERES C</td>
+                                    <td colspan="3">MAUVAIS RISQUE = @SPHERES D</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="7">Forces</td>
+                                    <td colspan="7">Faiblesses</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td colspan="6"><span t-field="o.strenght1"/></td>
+                                    <td>1</td>
+                                    <td colspan="6"><span t-field="o.weakness1"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>2</td>
+                                    <td colspan="6"><span t-field="o.strenght2"/></td>
+                                    <td>2</td>
+                                    <td colspan="6"><span t-field="o.weakness2"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>3</td>
+                                    <td colspan="6"><span t-field="o.strenght3"/></td>
+                                    <td>3</td>
+                                    <td colspan="6"><span t-field="o.weakness3"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>4</td>
+                                    <td colspan="6"><span t-field="o.strenght4"/></td>
+                                    <td>4</td>
+                                    <td colspan="6"><span t-field="o.weakness4"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>5</td>
+                                    <td colspan="6"><span t-field="o.strenght5"/></td>
+                                    <td>5</td>
+                                    <td colspan="6"><span t-field="o.weakness5"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="7">Dynamisme à Court Terme</td>
+                                    <td colspan="7">Risque Potentiels à Court Terme</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="7"><span t-field="o.short_term_dyn"/></td>
+                                    <td colspan="7"><span t-field="o.short_term_risks"/></td>
+                                </tr>
+                            </table>
+                            <!--table class="table_conclusions_recommandations common_style">
+                                <tr>
+                                    <td>E</td>
+                                    <td colspan="4">CONCLUSIONS RECOMMANDATIONS</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3">LES PRINCIPAUX PARTENAIRES</td>
+                                    <td rowspan="2">COMMENTAIRES</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TYPE</td>
+                                    <td>DENOMINATION</td>
+                                    <td>PAYS</td>
+                                </tr>
+                                <tr t-foreach="o.principal_partner_ids" t-as="principal_partner">
+                                    <td></td>
+                                    <td><span t-field="principal_partner.type_id"/></td>
+                                    <td><span t-field="principal_partner.name"/></td>
+                                    <td><span t-field="principal_partner.country"/></td>
+                                    <td><span t-field="principal_partner.comment"/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="4"><span t-field="o.comment_sphere"/></td>
+                                </tr>
+                            </table-->
+                            <p style="page-break-after:always;">   </p>
+                            <table class="table_conclusions_recommandations_2 common_style">
+                                <tr>
+                                    <td>E</td>
+                                    <td>CONCLUSIONS RECOMMANDATIONS</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><span t-field="o.comment_sphere"/></td>
+                                </tr>
+                            </table>
+                            <table class="table_donnees_financiers_comptables common_style">
+                                <tr>
+                                    <td>F</td>
+                                    <td colspan="9">DONNEES FINANCIERS &amp; COMPTABLES</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>ORIGINES DES DONNEES ==&gt;</td>
+                                    <td colspan="4"><t t-if="company['origin']=='local'"><span class="origin_data">X</span></t> Source Locale</td>
+                                    <td><t t-if="company['origin']=='fin'"><span class="origin_data">X</span></t> Services Financiers de la Société</td>
+                                    <td colspan="3"><t t-if="company['origin']=='other'"><span class="origin_data">X</span></t> Autres</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="9">BILAN FONCTIONNEL EN MONNAIE LOCALE</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>ACTIF</td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                    <td class="table_f_spacer"></td>
+                                    <td>PASSIF</td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>ACTIF IMMOBILISE</td>
+                                    <td>
+                                        <t t-if="company['total_ai_n']!=0"><span><t t-esc="o.sep_f(company['total_ai_n'])"/></span></t>
+                                    </td>
+                                    <td><t t-if="company['total_ai_n_1']!=0"><span><t t-esc="o.sep_f(company['total_ai_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_ai_var']!=0"><span><t t-esc="company['total_ai_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>CAPITAUX PERMANENTS</td>
+                                    <td><t t-if="company['total_cp_n']!=0"><span><t t-esc="o.sep_f(company['total_cp_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_cp_n_1']!=0"><span><t t-esc="o.sep_f(company['total_cp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_cp_var']!=0"><span><t t-esc="company['total_cp_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Terraints, Batîments...</td>
+                                    <td>
+                                        <t t-if="company['tr_bt_n']!=0"><span><t t-esc="o.sep_f(company['tr_bt_n'])"/></span></t>
+                                    </td>
+                                    <td><t t-if="company['tr_bt_n_1']!=0"><span><t t-esc="o.sep_f(company['tr_bt_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Capital Social</td>
+                                    <td><t t-if="company['cs_n']!=0"><span><t t-esc="o.sep_f(company['cs_n'])"/></span></t></td>
+                                    <td><t t-if="company['cs_n_1']!=0"><span><t t-esc="o.sep_f(company['cs_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Fds de Commerce, Brevets, Logiciels...</td>
+                                    <td><t t-if="company['fdc_br_log_n']!=0"><span><t t-esc="o.sep_f(company['fdc_br_log_n'])"/></span></t></td>
+                                    <td><t t-if="company['fdc_br_log_n_1']!=0"><span><t t-esc="o.sep_f(company['fdc_br_log_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Actionnaire Capital Non Appelé</td>
+                                    <td><t t-if="company['act_cna_n']!=0"><span><t t-esc="o.sep_f(company['act_cna_n'])"/></span></t></td>
+                                    <td><t t-if="company['act_cna_n_1']!=0"><span><t t-esc="o.sep_f(company['act_cna_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Charges Immobilisées</td>
+                                    <td><t t-if="company['ci_n']!=0"><span><t t-esc="o.sep_f(company['ci_n'])"/></span></t></td>
+                                    <td><t t-if="company['ci_n_1']!=0"><span><t t-esc="o.sep_f(company['ci_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Report A Nouveau</td>
+                                    <td><t t-if="company['ran_n']!=0"><span><t t-esc="o.sep_f(company['ran_n'])"/></span></t></td>
+                                    <td><t t-if="company['ran_n_1']!=0"><span><t t-esc="o.sep_f(company['ran_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Matériel Industriel, Instal, Agencements...</td>
+                                    <td><t t-if="company['miia_n']!=0"><span><t t-esc="o.sep_f(company['miia_n'])"/></span></t></td>
+                                    <td><t t-if="company['miia_n_1']!=0"><span><t t-esc="o.sep_f(company['miia_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Résultat Annuel</td>
+                                    <td><t t-if="company['ra_n']!=0"><span><t t-esc="o.sep_f(company['ra_n'])"/></span></t></td>
+                                    <td><t t-if="company['ra_n_1']!=0"><span><t t-esc="o.sep_f(company['ra_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Matériels de Bureau, Mat. Informatique...</td>
+                                    <td><t t-if="company['mdbmi_n']!=0"><span><t t-esc="o.sep_f(company['mdbmi_n'])"/></span></t></td>
+                                    <td><t t-if="company['mdbmi_n_1']!=0"><span><t t-esc="o.sep_f(company['mdbmi_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Réserves</td>
+                                    <td><t t-if="company['reserves_n']!=0"><span><t t-esc="o.sep_f(company['reserves_n'])"/></span></t></td>
+                                    <td><t t-if="company['reserves_n_1']!=0"><span><t t-esc="o.sep_f(company['reserves_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Matériels de Transports et Mobiles</td>
+                                    <td><t t-if="company['mdtem_n']!=0"><span><t t-esc="o.sep_f(company['mdtem_n'])"/></span></t></td>
+                                    <td><t t-if="company['mdtem_n_1']!=0"><span><t t-esc="o.sep_f(company['mdtem_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Subvention, Primes, Ecart Reeval. Autres...</td>
+                                    <td><t t-if="company['arpc_n']!=0"><span><t t-esc="o.sep_f(company['arpc_n'])"/></span></t></td>
+                                    <td><t t-if="company['arpc_n_1']!=0"><span><t t-esc="o.sep_f(company['arpc_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Actifs Financiers</td>
+                                    <td><t t-if="company['af_n']!=0"><span><t t-esc="o.sep_f(company['af_n'])"/></span></t></td>
+                                    <td><t t-if="company['af_n_1']!=0"><span><t t-esc="o.sep_f(company['af_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Dettes Financières</td>
+                                    <td><t t-if="company['df_n']!=0"><span><t t-esc="o.sep_f(company['df_n'])"/></span></t></td>
+                                    <td><t t-if="company['df_n_1']!=0"><span><t t-esc="o.sep_f(company['df_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Autres (Avance sur Immob...)</td>
+                                    <td><t t-if="company['other_actif_n']!=0"><span><t t-esc="o.sep_f(company['other_actif_n'])"/></span></t></td>
+                                    <td><t t-if="company['other_actif_n_1']!=0"><span><t t-esc="o.sep_f(company['other_actif_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Autres (Prov Fin. Risq et Ch.)</td>
+                                    <td><t t-if="company['aycpr_n']!=0"><span><t t-esc="o.sep_f(company['aycpr_n'])"/></span></t></td>
+                                    <td><t t-if="company['aycpr_n_1']!=0"><span><t t-esc="o.sep_f(company['aycpr_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>ACTIF CIRCULANT</td>
+                                    <td><t t-if="company['total_ac_n']!=0"><span><t t-esc="o.sep_f(company['total_ac_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_ac_n_1']!=0"><span><t t-esc="o.sep_f(company['total_ac_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_ac_var']!=0"><span><t t-esc="company['total_ac_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>PASSIF CIRCULANT</td>
+                                    <td><t t-if="company['total_pc_n']!=0"><span><t t-esc="o.sep_f(company['total_pc_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_pc_n_1']!=0"><span><t t-esc="o.sep_f(company['total_pc_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_pc_var']!=0"><span><t t-esc="company['total_pc_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Stocks</td>
+                                    <td><t t-if="company['stock_n']!=0"><span><t t-esc="o.sep_f(company['stock_n'])"/></span></t></td>
+                                    <td><t t-if="company['stock_n_1']!=0"><span><t t-esc="o.sep_f(company['stock_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Fournisseurs avance versées</td>
+                                    <td><t t-if="company['fav_n']!=0"><span><t t-esc="o.sep_f(company['fav_n'])"/></span></t></td>
+                                    <td><t t-if="company['fav_n_1']!=0"><span><t t-esc="o.sep_f(company['fav_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Clients Avances Perçues</td>
+                                    <td><t t-if="company['cap_n']!=0"><span><t t-esc="o.sep_f(company['cap_n'])"/></span></t></td>
+                                    <td><t t-if="company['cap_n_1']!=0"><span><t t-esc="o.sep_f(company['cap_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Clients</td>
+                                    <td><t t-if="company['customers_n']!=0"><span><t t-esc="o.sep_f(company['customers_n'])"/></span></t></td>
+                                    <td><t t-if="company['customers_n_1']!=0"><span><t t-esc="o.sep_f(company['customers_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Dettes Fournisseurs</td>
+                                    <td><t t-if="company['dfr_n']!=0"><span><t t-esc="o.sep_f(company['dfr_n'])"/></span></t></td>
+                                    <td><t t-if="company['dfr_n_1']!=0"><span><t t-esc="o.sep_f(company['dfr_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Créances Fiscales et Sociales</td>
+                                    <td><t t-if="company['cfes_n']!=0"><span><t t-esc="o.sep_f(company['cfes_n'])"/></span></t></td>
+                                    <td><t t-if="company['cfes_n_1']!=0"><span><t t-esc="o.sep_f(company['cfes_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Dettes Fiscales et Sociales</td>
+                                    <td><t t-if="company['dfes_n']!=0"><span><t t-esc="o.sep_f(company['dfes_n'])"/></span></t></td>
+                                    <td><t t-if="company['dfes_n_1']!=0"><span><t t-esc="o.sep_f(company['dfes_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Autres Créances</td>
+                                    <td><t t-if="company['ac_n']!=0"><span><t t-esc="o.sep_f(company['ac_n'])"/></span></t></td>
+                                    <td><t t-if="company['ac_n_1']!=0"><span><t t-esc="o.sep_f(company['ac_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Autres Dettes</td>
+                                    <td><t t-if="company['ad_n']!=0"><span><t t-esc="o.sep_f(company['ad_n'])"/></span></t></td>
+                                    <td><t t-if="company['ad_n_1']!=0"><span><t t-esc="o.sep_f(company['ad_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Charges Constatées d'avance, Ecart Conv</td>
+                                    <td><t t-if="company['cca_n']!=0"><span><t t-esc="o.sep_f(company['cca_n'])"/></span></t></td>
+                                    <td><t t-if="company['cca_n_1']!=0"><span><t t-esc="o.sep_f(company['cca_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Produits Constatés d'Avance, Ecart Conv</td>
+                                    <td><t t-if="company['pca_n']!=0"><span><t t-esc="o.sep_f(company['pca_n'])"/></span></t></td>
+                                    <td><t t-if="company['pca_n_1']!=0"><span><t t-esc="o.sep_f(company['pca_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TRESORERIE ACTIF</td>
+                                    <td><t t-if="company['total_ta_n']!=0"><span><t t-esc="o.sep_f(company['total_ta_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_ta_n_1']!=0"><span><t t-esc="o.sep_f(company['total_ta_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_ta_var']!=0"><span><t t-esc="company['total_ta_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>TRESORERIE PASSIF</td>
+                                    <td><t t-if="company['total_tp_n']!=0"><span><t t-esc="o.sep_f(company['total_tp_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_tp_n_1']!=0"><span><t t-esc="o.sep_f(company['total_tp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_tp_var']!=0"><span><t t-esc="company['total_tp_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Banques, Chèques, Caisse, Titres de placements</td>
+                                    <td><t t-if="company['bcctdp_n']!=0"><span><t t-esc="o.sep_f(company['bcctdp_n'])"/></span></t></td>
+                                    <td><t t-if="company['bcctdp_n_1']!=0"><span><t t-esc="o.sep_f(company['bcctdp_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Banques, Chèques, Caisse...</td>
+                                    <td><t t-if="company['bcc_n']!=0"><span><t t-esc="o.sep_f(company['bcc_n'])"/></span></t></td>
+                                    <td><t t-if="company['bcc_n_1']!=0"><span><t t-esc="o.sep_f(company['bcc_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL ACTIF</td>
+                                    <td><t t-if="company['total_actif_n']!=0"><span><t t-esc="o.sep_f(company['total_actif_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_actif_n_1']!=0"><span><t t-esc="o.sep_f(company['total_actif_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_actif_var']!=0"><span><t t-esc="company['total_actif_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>TOTAL PASSIF</td>
+                                    <td><t t-if="company['total_passif_n']!=0"><span><t t-esc="o.sep_f(company['total_passif_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_passif_n_1']!=0"><span><t t-esc="o.sep_f(company['total_passif_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_passif_var']!=0"><span><t t-esc="company['total_passif_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="9"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="9">COMPTE DE RESULTAT EN MONNAIE LOCALE</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>CHARGES</td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                    <td class="table_f_spacer"></td>
+                                    <td>PRODUITS</td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Achat de Mat. Prem, Marchandises et Consommables</td>
+                                    <td><t t-if="company['ampmc_n']!=0"><span><t t-esc="company['ampmc_n']"/></span></t></td>
+                                    <td><t t-if="company['ampmc_n_1']!=0"><span><t t-esc="company['ampmc_n_1']"/></span></t></td>
+                                    <td><t t-if="company['ampmc_var']!=0"><span><t t-esc="company['ampmc_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>VNETES DE MARCHANDISES ET PRODUITS</td>
+                                    <td><t t-if="company['vmp_n']!=0"><span><t t-esc="o.sep_f(company['vmp_n'])"/></span></t></td>
+                                    <td><t t-if="company['vmp_n_1']!=0"><span><t t-esc="o.sep_f(company['vmp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['vmp_var']!=0"><span><t t-esc="company['vmp_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Variation de Stocks</td>
+                                    <td><t t-if="company['vds_n']!=0"><span><t t-esc="o.sep_f(company['vds_n'])"/></span></t></td>
+                                    <td><t t-if="company['vds_n_1']!=0"><span><t t-esc="o.sep_f(company['vds_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>SERVICES ET TRAVAUX FACTURES</td>
+                                    <td><t t-if="company['stf_n']!=0"><span><t t-esc="o.sep_f(company['stf_n'])"/></span></t></td>
+                                    <td><t t-if="company['stf_n_1']!=0"><span><t t-esc="o.sep_f(company['stf_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Autres Charges</td>
+                                    <td><t t-if="company['total_autre_charges_n']!=0"><span><t t-esc="o.sep_f(company['total_autre_charges_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_autre_charges_n_1']!=0"><span><t t-esc="o.sep_f(company['total_autre_charges_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_autre_charges_var']!=0"><span><t t-esc="company['total_autre_charges_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>AUTRES PRODUITS</td>
+                                    <td><t t-if="company['total_autre_produits_n']!=0"><span><t t-esc="o.sep_f(company['total_autre_produits_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_autre_produits_n_1']!=0"><span><t t-esc="o.sep_f(company['total_autre_produits_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_autre_produits_var']!=0"><span><t t-esc="company['total_autre_produits_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td> Transport &amp; Déplacement </td>
+                                    <td><t t-if="company['td_n']!=0"><span><t t-esc="o.sep_f(company['td_n'])"/></span></t></td>
+                                    <td><t t-if="company['td_n_1']!=0"><span><t t-esc="o.sep_f(company['td_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Produits Accessoires</td>
+                                    <td><t t-if="company['pa_n']!=0"><span><t t-esc="o.sep_f(company['pa_n'])"/></span></t></td>
+                                    <td><t t-if="company['pa_n_1']!=0"><span><t t-esc="o.sep_f(company['pa_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td> Services Extérieur (Ohada Serv. A) </td>
+                                    <td><t t-if="company['seosa_n']!=0"><span><t t-esc="o.sep_f(company['seosa_n'])"/></span></t></td>
+                                    <td><t t-if="company['seosa_n_1']!=0"><span><t t-esc="o.sep_f(company['seosa_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Subventions</td>
+                                    <td><t t-if="company['subv_n']!=0"><span><t t-esc="o.sep_f(company['subv_n'])"/></span></t></td>
+                                    <td><t t-if="company['subv_n_1']!=0"><span><t t-esc="o.sep_f(company['subv_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td> Services Extérieur (Ohada Serv. B) </td>
+                                    <td><t t-if="company['seosb_n']!=0"><span><t t-esc="o.sep_f(company['seosb_n'])"/></span></t></td>
+                                    <td><t t-if="company['seosb_n_1']!=0"><span><t t-esc="o.sep_f(company['seosb_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Autres Produits</td>
+                                    <td><t t-if="company['ap1_n']!=0"><span><t t-esc="o.sep_f(company['ap1_n'])"/></span></t></td>
+                                    <td><t t-if="company['ap1_n_1']!=0"><span><t t-esc="o.sep_f(company['ap1_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Autres Charges</td>
+                                    <td><t t-if="company['ac1_n']!=0"><span><t t-esc="o.sep_f(company['ac1_n'])"/></span></t></td>
+                                    <td><t t-if="company['ac1_n_1']!=0"><span><t t-esc="o.sep_f(company['ac1_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>IMPOTS et TAXES</td>
+                                    <td><t t-if="company['it_n']!=0"><span><t t-esc="o.sep_f(company['it_n'])"/></span></t></td>
+                                    <td><t t-if="company['it_n_1']!=0"><span><t t-esc="o.sep_f(company['it_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['it_var']!=0"><span><t t-esc="company['it_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>TRANSFERT DE CHARGES</td>
+                                    <td><t t-if="company['tdc_n']!=0"><span><t t-esc="o.sep_f(company['tdc_n'])"/></span></t></td>
+                                    <td><t t-if="company['tdc_n_1']!=0"><span><t t-esc="o.sep_f(company['tdc_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['tdc_var']!=0"><span><t t-esc="company['tdc_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>CHARGES DU PERSONNEL</td>
+                                    <td><t t-if="company['cp_n']!=0"><span><t t-esc="o.sep_f(company['cp_n'])"/></span></t></td>
+                                    <td><t t-if="company['cp_n_1']!=0"><span><t t-esc="o.sep_f(company['cp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['cp_var']!=0"><span><t t-esc="company['cp_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>AMORTISSEMENT ET PROVISIONS</td>
+                                    <td><t t-if="company['ap_n']!=0"><span><t t-esc="o.sep_f(company['ap_n'])"/></span></t></td>
+                                    <td><t t-if="company['ap_n_1']!=0"><span><t t-esc="o.sep_f(company['ap_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['ap_var']!=0"><span><t t-esc="company['ap_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>REPRISE D'AMMORTISSEMENTS ET PROVISIONS</td>
+                                    <td><t t-if="company['rap_n']!=0"><span><t t-esc="o.sep_f(company['rap_n'])"/></span></t></td>
+                                    <td><t t-if="company['rap_n_1']!=0"><span><t t-esc="o.sep_f(company['rap_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['rap_var']!=0"><span><t t-esc="company['rap_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL CHARGES D'EXPLOITATION</td>
+                                    <td><t t-if="company['total_charges_exp_n']!=0"><span><t t-esc="o.sep_f(company['total_charges_exp_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_charges_exp_n_1']!=0"><span><t t-esc="o.sep_f(company['total_charges_exp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_charges_exp_var']!=0"><span><t t-esc="company['total_charges_exp_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>Total Produits d'Exploitation</td>
+                                    <td><t t-if="company['total_exp_products_n']!=0"><span><t t-esc="o.sep_f(company['total_exp_products_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_exp_products_n_1']!=0"><span><t t-esc="o.sep_f(company['total_exp_products_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_exp_products_var']!=0"><span><t t-esc="company['total_exp_products_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Résultat d'Exploitation Déficitaire</td>
+                                    <td><t t-if="company['reb_n']!=0"><span><t t-esc="o.sep_f(company['reb_n'])"/></span></t></td>
+                                    <td><t t-if="company['reb_n_1']!=0"><span><t t-esc="o.sep_f(company['reb_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><t t-if="company['red_n']!=0"><span><t t-esc="o.sep_f(company['red_n'])"/></span></t></td>
+                                    <td><t t-if="company['red_n_1']!=0"><span><t t-esc="o.sep_f(company['red_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Charges Financières</td>
+                                    <td><t t-if="company['cf_n']!=0"><span><t t-esc="o.sep_f(company['cf_n'])"/></span></t></td>
+                                    <td><t t-if="company['cf_n_1']!=0"><span><t t-esc="o.sep_f(company['cf_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['cf_var']!=0"><span><t t-esc="company['cf_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>Produits Financiers</td>
+                                    <td><t t-if="company['pf_n']!=0"><span><t t-esc="o.sep_f(company['pf_n'])"/></span></t></td>
+                                    <td><t t-if="company['pf_n_1']!=0"><span><t t-esc="o.sep_f(company['pf_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['pf_var']!=0"><span><t t-esc="company['pf_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td> Résultat Financier Bénéficiaire</td>
+                                    <td><t t-if="company['rfb_n']!=0"><span><t t-esc="o.sep_f(company['rfb_n'])"/></span></t></td>
+                                    <td><t t-if="company['rfb_n_1']!=0"><span><t t-esc="o.sep_f(company['rfb_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Résultat Financier Déficitaire</td>
+                                    <td><t t-if="company['rfd_n']!=0"><span><t t-esc="o.sep_f(company['rfd_n'])"/></span></t></td>
+                                    <td><t t-if="company['rfd_n_1']!=0"><span><t t-esc="o.sep_f(company['rfd_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Charges HAD</td>
+                                    <td><t t-if="company['ch_n']!=0"><span><t t-esc="o.sep_f(company['ch_n'])"/></span></t></td>
+                                    <td><t t-if="company['ch_n_1']!=0"><span><t t-esc="o.sep_f(company['ch_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['ch_var']!=0"><span><t t-esc="company['ch_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>Produits HAD</td>
+                                    <td><t t-if="company['ph_n']!=0"><span><t t-esc="o.sep_f(company['ph_n'])"/></span></t></td>
+                                    <td><t t-if="company['ph_n_1']!=0"><span><t t-esc="o.sep_f(company['ph_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['ph_var']!=0"><span><t t-esc="company['ph_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Résultat HAD Bénéficiaire</td>
+                                    <td><t t-if="company['rhb_n']!=0"><span><t t-esc="o.sep_f(company['rhb_n'])"/></span></t></td>
+                                    <td><t t-if="company['rhb_n_1']!=0"><span><t t-esc="o.sep_f(company['rhb_n_1'])"/></span></t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Résultat HAD Déficitaire</td>
+                                    <td><t t-if="company['rhd_n']!=0"><span><t t-esc="o.sep_f(company['rhd_n'])"/></span></t></td>
+                                    <td><t t-if="company['rhd_n_1']!=0"><span><t t-esc="o.sep_f(company['rhd_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL DES CHARGES</td>
+                                    <td><t t-if="company['total_charges_n']!=0"><span><t t-esc="o.sep_f(company['total_charges_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_charges_n_1']!=0"><span><t t-esc="o.sep_f(company['total_charges_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_charges_var']!=0"><span><t t-esc="company['total_charges_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td>TOTAL DES PRODUITS</td>
+                                    <td><t t-if="company['total_produits_n']!=0"><span><t t-esc="o.sep_f(company['total_produits_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_produits_n_1']!=0"><span><t t-esc="o.sep_f(company['total_produits_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_produits_var']!=0"><span><t t-esc="company['total_produits_var']"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Impôts sur le Résultat</td>
+                                    <td><t t-if="company['islr_n']!=0"><span><t t-esc="o.sep_f(company['islr_n'])"/></span></t></td>
+                                    <td><t t-if="company['islr_n_1']!=0"><span><t t-esc="o.sep_f(company['islr_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['islr_var']!=0"><span><t t-esc="company['islr_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>RESULTAT BENEFICIAIRE</td>
+                                    <td><t t-if="company['total_beneficiaire_n']!=0"><span><t t-esc="o.sep_f(company['total_beneficiaire_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_beneficiaire_n_1']!=0"><span><t t-esc="o.sep_f(company['total_beneficiaire_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_beneficiaire_var']!=0"><span><t t-esc="company['total_beneficiaire_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL DES EFFECTIFS ET SALAIRES</td>
+                                    <td><t t-if="company['total_es_n']!=0"><span><t t-esc="o.sep_f(company['total_es_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_es_n_1']!=0"><span><t t-esc="o.sep_f(company['total_es_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['total_es_var']!=0"><span><t t-esc="company['total_es_var']"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <p style="page-break-after:always;">   </p>
+                            <table class="table_ratios_spheres_title common_style">
+                                <tr>
+                                    <td>G</td>
+                                    <td>RATIOS @SPHERES</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>13 RATIOS D'ANALYSE BASES SUR LES DEUX DERNIERS EXERCICES COMPRABLES &amp; FINANCIERS</td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table class="table_ratios_spheres_degee common_style">
+                                <tr>
+                                    <td>Nos Passerelles d'Analyse</td>
+                                    <td>RATIOS EXCELLENT</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>RATIOS MOYENS</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>RATIOS FAIBLES</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table class="table_ratios_spheres ratios_12 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td><span><t t-esc="company['year_n']"/></span></td>
+                                    <td><span><t t-esc="company['year_n_1']"/></span></td>
+                                    <td>Var (%)</td>
+                                </tr>
+                                <tr>
+                                    <td>+Capitaux Permanents (Emploi de Fonds à long terme)</td>
+                                    <td><t t-if="company['total_cp_n']!=0"><span><t t-esc="o.sep_i(company['total_cp_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_cp_n_1']!=0"><span><t t-esc="o.sep_i(company['total_cp_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>VALEUR DES STOCKS</td>
+                                    <td rowspan="2">x 365 Jours</td>
+                                    <td><t t-if="company['stock_n']!=0"><span><t t-esc="o.sep_i(company['stock_n'])"/></span></t></td>
+                                    <td><t t-if="company['stock_n_1']!=0"><span><t t-esc="o.sep_i(company['stock_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>-Actifs Immobilisé (Ressources)</td>
+                                    <td><t t-if="company['total_ai_n']!=0"><span><t t-esc="o.sep_i(company['total_ai_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_ai_n_1']!=0"><span><t t-esc="o.sep_i(company['total_ai_n_1'])"/></span></t></td>
+                                    <td rowspan="2">ACHATS DE MATIERS &amp; CONSOMMABLES</td>
+                                    <td><t t-if="company['amc_n']!=0"><span><t t-esc="o.sep_i(company['amc_n'])"/></span></t></td>
+                                    <td><t t-if="company['amc_n_1']!=0"><span><t t-esc="o.sep_i(company['amc_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>FOND DE ROULEMENT NET = FDR</td>
+                                    <td><t t-if="company['fdr_n']!=0"><span><t t-esc="o.sep_i(company['fdr_n'])"/></span></t></td>
+                                    <td><t t-if="company['fdr_n_1']!=0"><span><t t-esc="o.sep_i(company['fdr_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['fdr_var']!=0"><span><t t-esc="o.sep_i(company['fdr_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= ROTATION DES STOCKS en jours</td>
+                                    <td><t t-if="company['rsd_n']!=0"><span><t t-esc="o.sep_i(company['rsd_n'])"/></span></t></td>
+                                    <td><t t-if="company['rsd_n_1']!=0"><span><t t-esc="o.sep_i(company['rsd_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['rsd_var']!=0"><span><t t-esc="o.sep_i(company['rsd_var'])"/></span>%</t></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>+ACTIFS D'EXPLOITATIONS</td>
+                                    <td><t t-if="company['total_ac_n']!=0"><span><t t-esc="o.sep_i(company['total_ac_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_ac_n_1']!=0"><span><t t-esc="o.sep_i(company['total_ac_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>CREANCES CLIENTS AU BILAN</td>
+                                    <td rowspan="2">x 365 Jours</td>
+                                    <td><t t-if="company['customers_n']!=0"><span><t t-esc="o.sep_i(company['customers_n'])"/></span></t></td>
+                                    <td><t t-if="company['customers_n_1']!=0"><span><t t-esc="o.sep_i(company['customers_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>-DETTES D'EXPLOITATIONS</td>
+                                    <td><t t-if="company['total_pc_n']!=0"><span><t t-esc="o.sep_i(company['total_pc_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_pc_n_1']!=0"><span><t t-esc="o.sep_i(company['total_pc_n_1'])"/></span></t></td>
+                                    <td rowspan="2">VENTES TTC(excl.de TVA sur l'export...)</td>
+                                    <td><t t-if="company['sttc_n']!=0"><span><t t-esc="o.sep_i(company['sttc_n'])"/></span></t></td>
+                                    <td><t t-if="company['sttc_n_1']!=0"><span><t t-esc="o.sep_i(company['sttc_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>BESOIN EN FOND DE ROULEMENT = BFR</td>
+                                    <td><t t-if="company['bfr_n']!=0"><span><t t-esc="o.sep_i(company['bfr_n'])"/></span></t></td>
+                                    <td><t t-if="company['bfr_n_1']!=0"><span><t t-esc="o.sep_i(company['bfr_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['bfr_var']!=0"><span><t t-esc="o.sep_i(company['bfr_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= ROTATION DES CLIENTS en jours</td>
+                                    <td><t t-if="company['rcd_n']!=0"><span><t t-esc="o.sep_i(company['rcd_n'])"/></span></t></td>
+                                    <td><t t-if="company['rcd_n_1']!=0"><span><t t-esc="o.sep_i(company['rcd_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['rcd_var']!=0"><span><t t-esc="o.sep_i(company['rcd_var'])"/></span>%</t></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 ratios_56 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>+FON DE ROULEMENT NET = (FRN)</td>
+                                    <td><t t-if="company['fdr_n']!=0"><span><t t-esc="o.sep_i(company['fdr_n'])"/></span></t></td>
+                                    <td><t t-if="company['fdr_n_1']!=0"><span><t t-esc="o.sep_i(company['fdr_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>DETTES FOURNISSEURS</td>
+                                    <td rowspan="2">x 365 Jours</td>
+                                    <td><t t-if="company['dfes_n']!=0"><span><t t-esc="o.sep_i(company['dfes_n'])"/></span></t></td>
+                                    <td><t t-if="company['dfes_n_1']!=0"><span><t t-esc="o.sep_i(company['dfes_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>-BESOIN EN FON DE ROULEMENT NET = (BFR)</td>
+                                    <td><t t-if="company['bfr_n']!=0"><span><t t-esc="o.sep_i(company['bfr_n'])"/></span></t></td>
+                                    <td><t t-if="company['bfr_n_1']!=0"><span><t t-esc="o.sep_i(company['bfr_n_1'])"/></span></t></td>
+                                    <td rowspan="2">Achats TTC(excl.de TVA sur les Achats Exo...)</td>
+                                    <td><t t-if="company['pttc_n']!=0"><span><t t-esc="o.sep_i(company['pttc_n'])"/></span></t></td>
+                                    <td><t t-if="company['pttc_n_1']!=0"><span><t t-esc="o.sep_i(company['pttc_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>TRESORERIE NETTE</td>
+                                    <td><t t-if="company['tn_n']!=0"><span><t t-esc="o.sep_i(company['tn_n'])"/></span></t></td>
+                                    <td><t t-if="company['tn_n_1']!=0"><span><t t-esc="o.sep_i(company['tn_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['tn_var']!=0"><span><t t-esc="o.sep_i(company['tn_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= ROTATION DES FOURNISSEURS en jours</td>
+                                    <td><t t-if="company['rfd_n']!=0"><span><t t-esc="o.sep_i(company['rfd_n'])"/></span></t></td>
+                                    <td><t t-if="company['rfd_n_1']!=0"><span><t t-esc="o.sep_i(company['rfd_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['rfd_var']!=0"><span><t t-esc="o.sep_i(company['rfd_var'])"/></span>%</t></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 ratios_78 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>+ACTIF CIRCULANTS</td>
+                                    <td><t t-if="company['total_ac_n']!=0"><span><t t-esc="o.sep_i(company['total_ac_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_ac_n_1']!=0"><span><t t-esc="o.sep_i(company['total_ac_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>DETTES A LONG TERME (Classe 16 à 17) + DETTES COURT TERME (Class 40 à 47)</td>
+                                    <td rowspan="2"></td>
+                                    <td><t t-if="company['dclt_n']!=0"><span><t t-esc="o.sep_i(company['dclt_n'])"/></span></t></td>
+                                    <td><t t-if="company['dclt_n_1']!=0"><span><t t-esc="o.sep_i(company['dclt_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>/DETTES A COURT TERME</td>
+                                    <td><t t-if="company['total_pc_n']!=0"><span><t t-esc="o.sep_i(company['total_pc_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_pc_n_1']!=0"><span><t t-esc="o.sep_i(company['total_pc_n_1'])"/></span></t></td>
+                                    <td rowspan="2">TOTAL DU BILAN</td>
+                                    <td><t t-if="company['total_actif_n']!=0"><span><t t-esc="o.sep_i(company['total_actif_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_actif_n_1']!=0"><span><t t-esc="o.sep_i(company['total_actif_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>= LIQUIDITE "Liquid Test" EN % (&gt; 1)</td>
+                                    <td><t t-if="company['lt_n']!=0"><span><t t-esc="o.sep_f(company['lt_n'])"/></span></t></td>
+                                    <td><t t-if="company['lt_n_1']!=0"><span><t t-esc="o.sep_f(company['lt_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['lt_var']!=0"><span><t t-esc="o.sep_i(company['lt_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= DEGRE ENDETTEMENT EN %</td>
+                                    <td><t t-if="company['de_n']!=0"><span><t t-esc="o.sep_f(company['de_n'])"/></span></t></td>
+                                    <td><t t-if="company['de_n_1']!=0"><span><t t-esc="o.sep_f(company['de_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['de_var']!=0"><span><t t-esc="o.sep_i(company['de_var'])"/></span>%</t></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 ratios_910 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>FONDS PROPRES</td>
+                                    <td><t t-if="company['total_cp_n']!=0"><span><t t-esc="o.sep_i(company['total_cp_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_cp_n_1']!=0"><span><t t-esc="o.sep_i(company['total_cp_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>DETTES FINANCIERES</td>
+                                    <td rowspan="2"></td>
+                                    <td><t t-if="company['df_n']!=0"><span><t t-esc="o.sep_i(company['df_n'])"/></span></t></td>
+                                    <td><t t-if="company['df_n_1']!=0"><span><t t-esc="o.sep_i(company['df_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL DU BILAN</td>
+                                    <td><t t-if="company['total_actif_n']!=0"><span><t t-esc="o.sep_i(company['total_actif_n'])"/></span></t></td>
+                                    <td><t t-if="company['total_actif_n_1']!=0"><span><t t-esc="o.sep_i(company['total_actif_n_1'])"/></span></t></td>
+                                    <td rowspan="2">CAFG</td>
+                                    <td><t t-if="company['cafg_n']!=0"><span><t t-esc="o.sep_i(company['cafg_n'])"/></span></t></td>
+                                    <td><t t-if="company['cafg_n_1']!=0"><span><t t-esc="o.sep_i(company['cafg_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>= DEGRE AUTONOMIE FINANCIERE (= ou &gt; 20%)</td>
+                                    <td><t t-if="company['daf_n']!=0"><span><t t-esc="o.sep_i(company['daf_n'])"/></span></t></td>
+                                    <td><t t-if="company['daf_n_1']!=0"><span><t t-esc="o.sep_i(company['daf_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['daf_var']!=0"><span><t t-esc="o.sep_i(company['daf_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= DETTES FIN. / CAFG (&lt; =4)</td>
+                                    <td><t t-if="company['dfcafg_n']!=0"><span><t t-esc="o.sep_f(company['dfcafg_n'])"/></span></t></td>
+                                    <td><t t-if="company['dfcafg_n_1']!=0"><span><t t-esc="o.sep_f(company['dfcafg_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['dfcafg_var']!=0"><span><t t-esc="o.sep_i(company['dfcafg_var'])"/></span>%</t></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 ratios_910 ratios_1112 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="5"></td>
+                                    <td></td>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>RESULTAT NET</td>
+                                    <td><t t-if="company['ra_n']!=0"><span><t t-esc="o.sep_i(company['ra_n'])"/></span></t></td>
+                                    <td><t t-if="company['ra_n_1']!=0"><span><t t-esc="o.sep_i(company['ra_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td class="bg_fleche_img" rowspan="3">c</td>
+                                    <td>CAPITAUX PROPRES</td>
+                                    <td rowspan="2"></td>
+                                    <td><t t-if="company['cappro_n']!=0"><span><t t-esc="o.sep_i(company['cappro_n'])"/></span></t></td>
+                                    <td><t t-if="company['cappro_n_1']!=0"><span><t t-esc="o.sep_i(company['cappro_n_1'])"/></span></t></td>
+                                    <td rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td>CHIFFRE D'AFFAIRES</td>
+                                    <td><t t-if="company['vmp_n']!=0"><span><t t-esc="o.sep_i(company['vmp_n'])"/></span></t></td>
+                                    <td><t t-if="company['vmp_n_1']!=0"><span><t t-esc="o.sep_i(company['vmp_n_1'])"/></span></t></td>
+                                    <td rowspan="2">CAPITAL SOCIAL</td>
+                                    <td><t t-if="company['cs_n']!=0"><span><t t-esc="o.sep_i(company['cs_n'])"/></span></t></td>
+                                    <td><t t-if="company['cs_n_1']!=0"><span><t t-esc="o.sep_i(company['cs_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>= RN / CAFF HT % (&gt; 0%)</td>
+                                    <td><t t-if="company['rncaff_n']!=0"><span><t t-esc="o.sep_f(company['rncaff_n'])"/></span></t></td>
+                                    <td><t t-if="company['rncaff_n_1']!=0"><span><t t-esc="o.sep_f(company['rncaff_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['rncaff_var']!=0"><span><t t-esc="o.sep_i(company['rncaff_var'])"/></span>%</t></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">= CONTINUE EXPLOITATION EN % (&gt; 50%)</td>
+                                    <td><t t-if="company['cexp_n']!=0"><span><t t-esc="o.sep_f(company['cexp_n'])"/></span></t></td>
+                                    <td><t t-if="company['cexp_n_1']!=0"><span><t t-esc="o.sep_f(company['cexp_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['cexp_var']!=0"><span><t t-esc="o.sep_i(company['cexp_var'])"/></span>%</t></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7"></td>
+                                    <td colspan="2">SI &lt; 50% MIN. RESTRUCT. CAPITAL A FAIRE</td>
+                                    <td><t t-if="company['mrcaf_n']!=0"><span><t t-esc="o.sep_f(company['mrcaf_n'])"/></span></t></td>
+                                    <td><t t-if="company['mrcaf_n_1']!=0"><span><t t-esc="o.sep_f(company['mrcaf_n_1'])"/></span></t></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="table_ratios_spheres ratios_34 ratios_13 common_style">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Résultat net de l'exercice</td>
+                                    <td><t t-if="company['ra_n']!=0"><span><t t-esc="o.sep_i(company['ra_n'])"/></span></t></td>
+                                    <td><t t-if="company['ra_n_1']!=0"><span><t t-esc="o.sep_i(company['ra_n_1'])"/></span></t></td>
+                                    <td rowspan="5"></td>
+                                    <td class="bg_fleche_img" rowspan="5">c</td>
+                                </tr>
+                                <tr>
+                                    <td>+Dotations aux amortissements et provisions</td>
+                                    <td><t t-if="company['ap_n']!=0"><span><t t-esc="o.sep_i(company['ap_n'])"/></span></t></td>
+                                    <td><t t-if="company['ap_n_1']!=0"><span><t t-esc="o.sep_i(company['ap_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td>-Reprises sur amortissements et provisions</td>
+                                    <td><t t-if="company['rap_n']!=0"><span><t t-esc="o.sep_i(company['rap_n'])"/></span></t></td>
+                                    <td><t t-if="company['rap_n_1']!=0"><span><t t-esc="o.sep_i(company['rap_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td>+Valeur comptable des éléments d'actif cédés</td>
+                                    <td><t t-if="company['ch_n']!=0"><span><t t-esc="o.sep_i(company['ch_n'])"/></span></t></td>
+                                    <td><t t-if="company['ch_n_1']!=0"><span><t t-esc="o.sep_i(company['ch_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td>-Produits de cession des éléments d'actif</td>
+                                    <td><t t-if="company['ph_n']!=0"><span><t t-esc="o.sep_i(company['ph_n'])"/></span></t></td>
+                                    <td><t t-if="company['ph_n_1']!=0"><span><t t-esc="o.sep_i(company['ph_n_1'])"/></span></t></td>
+                                </tr>
+                                <tr>
+                                    <td>= Capacité d'autofinancement ou CAFG</td>
+                                    <td><t t-if="company['cafg_n']!=0"><span><t t-esc="o.sep_i(company['cafg_n'])"/></span></t></td>
+                                    <td><t t-if="company['cafg_n_1']!=0"><span><t t-esc="o.sep_i(company['cafg_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['cafg_var']!=0"><span><t t-esc="o.sep_i(company['cafg_var'])"/></span>%</t></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="table_end_report common_style">
+                                <tr>
+                                    <td>DOCUMENT STRICTEMENT DESTINE A L'USAGE EXCLUSIF DU PARTENAIRE MENTIONNE AU POINT C/</td>
+                                </tr>
+                                <tr>
+                                    <td>NOTRE RESPONSABLE EST DEGAGEE EN CAS D'INCIDENT OCCASIONNE PAR LA DIFFUSION OU LA PUBLICATION A AUTRUI PAR LEDIT PARTENAIRE</td>
+                                </tr>
+                            </table>
+                        </table>
+                        <!--/t-->
+                        <t t-set="i" t-value="i+1"/>
+                    </t>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+        <template id="product_B_template">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'africa_sphere.product_B_document')"/>
+                </t>
+            </t>
+        </template>
+        <!-- end report product A -->
+        <!-- start report declaration -->
+        <report
+                id="product_B_report"
+                string="Product B"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="Product_B"
+                name="africa_sphere.product_B_template"
+                attachment="(object.product_id.name+'.pdf')"
+                multi = "0"
+        />
+        <record id="paperformat_product_B_report" model="report.paperformat">
+            <field name="name">Paperformat Product B</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">32</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">29</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="product_B_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_product_B_report"/>
+            <field name="is_product" eval="True"/>
+        </record>
+        <!-- end report declaration -->
+
+        <!-- save script -->
+        <!--t t-set="r" t-value="9+len(company['company_leader_ids'])*2" />
+        <t t-if="company['maison_mere']">
+            <t t-set="r" t-value="r+1" />
+        </t-->
+        <!--t t-set="leader" t-value="3"/>
+                                    <t t-set="m" t-value="1"/>
+                                    <t t-set="len_tab" t-value="len(company['company_leader_ids'])"/>
+                                    <t t-foreach="len_tab" t-as="l">
+                                        <t t-if="l &lt; leader">
+                                            <tr>
+                                                <td></td>
+                                                <td><strong>Dirigeant <t t-esc="m"/></strong></td>
+                                                <td><strong class="info_align_right">Fonction</strong></td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td><span class="info_normal_bold"><t t-esc="company['company_leader_ids'][l].name"/></span></td>
+                                                <td><span class="info_align_right"><t t-esc="company['company_leader_ids'][l].poste"/></span></td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <t t-set="m" t-value="m+1"/>
+                                        </t>
+                                    </t>
+                                    <t t-if="len_tab &lt; leader">
+                                        <t t-set="add_loop" t-value="leader-len_tab"/>
+                                    </t>
+                                    <t t-if="add_loop &gt; 0">
+                                        <t t-foreach="add_loop" t-as="l">
+                                            <tr>
+                                                <td></td>
+                                                <td><strong>Dirigeant <t t-esc="m"/></strong></td>
+                                                <td><strong class="info_align_right">Fonction</strong></td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <t t-set="m" t-value="m+1"/>
+                                        </t>
+                                    </t-->
+        <!--t t-set="m" t-value="0"/>
+                                <!t t-foreach="company['company_leader_ids']" t-as="leader">
+                                    <tr>
+                                        <td></td>
+                                        <td><strong>Dirigeant <t t-esc="m+1"/></strong></td>
+                                        <td><strong class="info_align_right">Fonction</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span class="info_normal_bold"><t t-esc="leader.name"/></span></td>
+                                        <td><span class="info_align_right"><t t-esc="leader.poste"/></span></td>
+                                    </tr>
+                                    <t t-set="m" t-value="m+1"/>
+                                </t-->
+    </data>
+</openerp>
