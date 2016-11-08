@@ -146,7 +146,7 @@
                                                          <separator string="Charges Financières" colspan="4"/>
                                                         <field name="cf"/>
                                                         <field name="rfb"/>
-                                                        <separator string="Charges HAD" colspan="4"/>
+                                                        <separator string="Charges HAO" colspan="4"/>
                                                         <field name="ch"/>
                                                         <field name="rhb"/>
                                                         <separator string="TOTAL DES CHARGES" colspan="4"/>
@@ -173,14 +173,14 @@
                                                         <field name="rap"/>
 
                                                         <separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
-                                                        <field name="rap"/>
+                                                        <field name="aprov"/>
                                                         <separator string="Total Produits d'Exploitation" colspan="4"/>
                                                         <field name="total_exp_products"/>
                                                         <field name="red"/>
                                                          <separator string="Produits Financiers" colspan="4"/>
                                                         <field name="pf"/>
                                                         <field name="rfd"/>
-                                                        <separator string="Produits HAD" colspan="4"/>
+                                                        <separator string="Produits HAO" colspan="4"/>
                                                         <field name="ph"/>
                                                         <field name="rhd"/>
                                                         <separator string="TOTAL DES PRODUITS" colspan="4"/>

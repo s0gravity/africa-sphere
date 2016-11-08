@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 from openerp import models, fields, api, _, exceptions
-import datetime
+from datetime import datetime
 from openerp.exceptions import except_orm, Warning, RedirectWarning
+from dateutil.relativedelta import relativedelta
+from dateutil import parser
 
 class sphere_company(models.Model):
     _name = 'sphere.company'
@@ -31,7 +33,7 @@ class sphere_company(models.Model):
 
     sigle = fields.Char(string="Sigle")
     creation_date = fields.Date(string="ANNEE DE CREATION")
-    nb_years_existance = fields.Integer(string="DUREE EXISTANCE EN ANNEES")
+    nb_years_existance = fields.Integer(string="DUREE EXISTANCE EN ANNEES",readonly=True,compute="_calculate_years_of_existance")
     legal_form = fields.Char(string="Forme Légale")
     num_rccm_kbis = fields.Char(string="Num. RCCM-KBIS")
     city = fields.Char(string="Ville")
@@ -42,6 +44,16 @@ class sphere_company(models.Model):
     maison_mere = fields.Char(string="Maison Mère")
     maison_weight = fields.Float(string="Poids des Actions en %",digits=(6,2))
     history = fields.Text(string="")
+
+    @api.one
+    @api.depends('creation_date')
+    def _calculate_years_of_existance(self):
+        if self.creation_date:
+            self.nb_years_existance = relativedelta(datetime.now().date(), parser.parse(self.creation_date).date()).years
+        else:
+            self.nb_years_existance = 0
+
+
 
 
 sphere_company()
