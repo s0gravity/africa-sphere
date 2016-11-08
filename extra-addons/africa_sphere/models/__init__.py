@@ -6,3 +6,4 @@ import sale_order
 import sphere_company_fiscalyear
 import company_shareholder
 import company_leader
+import sphere_reporting_history

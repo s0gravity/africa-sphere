@@ -729,12 +729,12 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>Autres Charges</td>
+                                    <td>AUTRES DEPENSES</td>
                                     <td><t t-if="company['total_autre_charges_n']!=0"><span><t t-esc="o.sep_f(company['total_autre_charges_n'])"/></span></t></td>
                                     <td><t t-if="company['total_autre_charges_n_1']!=0"><span><t t-esc="o.sep_f(company['total_autre_charges_n_1'])"/></span></t></td>
                                     <td><t t-if="company['total_autre_charges_var']!=0"><span><t t-esc="company['total_autre_charges_var']"/></span>%</t></td>
                                     <td></td>
-                                    <td>AUTRES PRODUITS</td>
+                                    <td>AUTRES REVENUS</td>
                                     <td><t t-if="company['total_autre_produits_n']!=0"><span><t t-esc="o.sep_f(company['total_autre_produits_n'])"/></span></t></td>
                                     <td><t t-if="company['total_autre_produits_n_1']!=0"><span><t t-esc="o.sep_f(company['total_autre_produits_n_1'])"/></span></t></td>
                                     <td><t t-if="company['total_autre_produits_var']!=0"><span><t t-esc="company['total_autre_produits_var']"/></span>%</t></td>
@@ -777,7 +777,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>Autres Charges</td>
+                                    <td>AUTRES DEPENSES</td>
                                     <td><t t-if="company['ac1_n']!=0"><span><t t-esc="o.sep_f(company['ac1_n'])"/></span></t></td>
                                     <td><t t-if="company['ac1_n_1']!=0"><span><t t-esc="o.sep_f(company['ac1_n_1'])"/></span></t></td>
                                     <td></td>
@@ -909,24 +909,24 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>Charges HAD</td>
+                                    <td>Charges HAO</td>
                                     <td><t t-if="company['ch_n']!=0"><span><t t-esc="o.sep_f(company['ch_n'])"/></span></t></td>
                                     <td><t t-if="company['ch_n_1']!=0"><span><t t-esc="o.sep_f(company['ch_n_1'])"/></span></t></td>
                                     <td><t t-if="company['ch_var']!=0"><span><t t-esc="company['ch_var']"/></span>%</t></td>
                                     <td></td>
-                                    <td>Produits HAD</td>
+                                    <td>Produits HAO</td>
                                     <td><t t-if="company['ph_n']!=0"><span><t t-esc="o.sep_f(company['ph_n'])"/></span></t></td>
                                     <td><t t-if="company['ph_n_1']!=0"><span><t t-esc="o.sep_f(company['ph_n_1'])"/></span></t></td>
                                     <td><t t-if="company['ph_var']!=0"><span><t t-esc="company['ph_var']"/></span>%</t></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>Résultat HAD Bénéficiaire</td>
+                                    <td>Résultat HAO Bénéficiaire</td>
                                     <td><t t-if="company['rhb_n']!=0"><span><t t-esc="o.sep_f(company['rhb_n'])"/></span></t></td>
                                     <td><t t-if="company['rhb_n_1']!=0"><span><t t-esc="o.sep_f(company['rhb_n_1'])"/></span></t></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Résultat HAD Déficitaire</td>
+                                    <td>Résultat HAO Déficitaire</td>
                                     <td><t t-if="company['rhd_n']!=0"><span><t t-esc="o.sep_f(company['rhd_n'])"/></span></t></td>
                                     <td><t t-if="company['rhd_n_1']!=0"><span><t t-esc="o.sep_f(company['rhd_n_1'])"/></span></t></td>
                                     <td></td>

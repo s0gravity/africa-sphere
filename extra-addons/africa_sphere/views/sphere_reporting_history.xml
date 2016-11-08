@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+            
+           <record model="ir.ui.view" id="sphere_reporting_history_tree_view">
+                <field name="name">sphere.reporting.history.tree.view</field>
+                <field name="model">sphere.reporting.history</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Historique des rapports" create="false" edit="false" delete="false">
+                        <field name="date"/>
+                        <field name="partner_id"/>
+                        <field name="product_id"/>
+                        <field name="order_id"/>
+                        <field name="type"/>
+                    </tree>
+                </field>
+            </record>
+
+
+            <record model="ir.actions.act_window" id="action_sphere_reporting_history_tree_view">
+                <field name="name">Historique des rapports</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">sphere.reporting.history</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+            </record>
+
+
+            <menuitem id="sphere_reporting_history_menu" name="Historique des rapports" parent="base.menu_sales" action="action_sphere_reporting_history_tree_view" groups="base.group_sale_manager,account.group_account_manager"/>
+
+
+            <record id="sphere_reporting_history_search_view" model="ir.ui.view">
+                <field name="name">sphere.reporting.history.search.view</field>
+                <field name="model">sphere.reporting.history</field>
+                <field name="arch" type="xml">
+                    <search>
+
+                        <field name="partner_id"/>
+                        <field name="product_id"/>
+                        <field name="order_id"/>
+
+                        <group string="Grouper par">
+                            <filter name="group_by_partner_id" string="Client" context="{'group_by':'partner_id'}"  />
+                            <filter name="group_by_product_id" string="Produit" context="{'group_by':'product_id'}"  />
+                            <filter name="group_by_order_id" string="Bon de commande" context="{'group_by':'order_id'}"  />
+                            <filter name="group_by_type" string="Type" context="{'group_by':'type'}"  />
+                        </group>
+
+                    </search>
+                </field>
+            </record>
+
+
+    </data>
+</openerp>

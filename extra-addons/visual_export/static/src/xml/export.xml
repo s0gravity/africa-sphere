@@ -1,0 +1,19 @@
+<templates>
+    <t t-name="VisualExport">
+        <a href="#" class="oe_bold oe_list_button_export">Visual export</a>
+    </t>
+    <t t-extend="ListView.buttons">
+        <t t-jquery="div.oe_list_buttons" t-operation="append">
+            <t t-call="VisualExport"/>
+        </t>
+    </t>
+
+    <template id="assets_backend" name="visual_export assets" inherit_id="web.assets_backend">
+	            <xpath expr="." position="inside">
+	                <link rel="stylesheet" href="/visual_export/static/src/css/export.css"/>
+                    <script type="text/javascript" src="/visual_export/static/src/js/export.js"></script>
+	            </xpath>
+</template>
+</templates>
+
+

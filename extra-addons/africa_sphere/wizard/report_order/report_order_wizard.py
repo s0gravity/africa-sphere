@@ -162,6 +162,14 @@ class report_order_wizard(models.TransientModel):
         if self.product_id.is_report and self.product_id.report_id:
             sale_order.sale_order_print_auto(self.product_id.report_id.report_name)
             #self._print_excel(self.product_id.report_id.report_name,'sale.order',sale_order.id)
+
+        #Reporting history creation
+        self.env['sphere.reporting.history'].create({'date':fields.datetime.now(),
+                                                     'order_id':sale_order.id,
+                                                     'partner_id':self.partner_id.id,
+                                                     'product_id':self.product_id.id,
+                                                     'type':self.action
+                                                     })
         #Sale order redirection
         return  {
             'domain': str([('id', 'in', [sale_order.id])]),

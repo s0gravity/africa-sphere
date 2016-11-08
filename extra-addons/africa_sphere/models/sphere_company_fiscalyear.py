@@ -46,6 +46,7 @@ class sphere_company_fiscalyear(models.Model):
     cca = fields.Float(string="Charges Constatées d'avance, Ecart Conv",digits=(6,2))
     total_actif_circulant = fields.Float(string="ACTIF CIRCULANT",digits=(6,2),compute="_total_actif_circulant")
     bcctdp = fields.Float(string="Banques, Chèques, Caisse, Titres de placements",digits=(6,2))
+    eca = fields.Float(string="Ecart de Conversion-Actif",digits=(6,2))
     total_treso_actif = fields.Float(string="TRESORERIE ACTIF",digits=(6,2),compute="_total_treso_actif")
     total_actif = fields.Float(string="Total Actif",digits=(6,2),compute="_total_actif")
     #Passif
@@ -65,6 +66,7 @@ class sphere_company_fiscalyear(models.Model):
     pca = fields.Float(string="Produits Constatés d'Avance, Ecart Conv",digits=(6,2))
     total_passif_circulant = fields.Float(string="PASSIF CIRCULANT",digits=(6,2),compute="_total_passif_circulant")
     bcc = fields.Float(string="Banques, Chèques, Caisse...",digits=(6,2))
+    ecp = fields.Float(string="Ecart de Conversion-Passif",digits=(6,2))
     total_treso_passif = fields.Float(string="TRESORERIE PASSIF",digits=(6,2),compute="_total_treso_passif")
     total_passif = fields.Float(string="Total Passif",digits=(6,2),compute="_total_passif")
     #COMPTE DE RESULTAT EN MONNAIE LOCALE
@@ -96,9 +98,10 @@ class sphere_company_fiscalyear(models.Model):
     pa = fields.Float(string="Produits Accessoires",digits=(6,2))
     subv = fields.Float(string="Subventions",digits=(6,2))
     ap1 = fields.Float(string="Autres Produits",digits=(6,2))
+    psi = fields.Float(string="Production Stockée, Immobilisée...",digits=(6,2))
     tdc = fields.Float(string="TRANSFERT DE CHARGES",digits=(6,2))
     rap = fields.Float(string="REPRISE D'AMMORTISSEMENTS ET PROVISIONS",digits=(6,2))
-    aprov = fields.Float(string="AMMORTISSEMENTS ET PROVISIONS",digits=(6,2))
+    #aprov = fields.Float(string="AMMORTISSEMENTS ET PROVISIONS",digits=(6,2))
     total_exp_products = fields.Float(string="Total Produits d'Exploitation",digits=(6,2))
     red = fields.Float(string="Résultat d'Exploitation Déficitaire",digits=(6,2),compute="_red")
     pf = fields.Float(string="Produits Financiers",digits=(6,2))
@@ -166,14 +169,14 @@ class sphere_company_fiscalyear(models.Model):
         self.rb = rb > 0 and rb or 0.00
 
     @api.one
-    @api.depends('pa','subv','ap1')
+    @api.depends('pa','subv','ap1','psi')
     def _other_products(self):
-        self.other_products = self.pa + self.subv + self.ap1
+        self.other_products = self.pa + self.subv + self.ap1 + self.psi
 
     @api.one
-    @api.depends('vmp','stf','other_products','tdc','rap','aprov','total_exp_products','pf','ph')
+    @api.depends('vmp','stf','other_products','tdc','rap','total_exp_products','pf','ph')
     def _total_products(self):
-        self.total_products = self.vmp + self.stf + self.other_products + self.tdc + self.rap + self.aprov + self.total_exp_products + self.pf + self.ph
+        self.total_products = self.vmp + self.stf + self.other_products + self.tdc + self.rap + self.total_exp_products + self.pf + self.ph
 
     @api.one
     @api.depends('total_charges','total_products')

@@ -63,23 +63,27 @@
                                                             <field name="other_actif"/>
                                                         </group>
                                                         <group colspan="4">
-                                                        <separator string="ACTIF CIRCULANTS" colspan="4"/>
-                                                        <field name="total_actif_circulant"  readonly="1" />
-                                                        <field name="stock"/>
-                                                        <field name="fav"/>
-                                                        <field name="customers"/>
-                                                        <field name="cfes"/>
-                                                        <field name="ac"/>
-                                                        <field name="cca"/>
+                                                            <separator string="ACTIF CIRCULANTS" colspan="4"/>
+                                                            <field name="total_actif_circulant"  readonly="1" />
+                                                            <field name="stock"/>
+                                                            <field name="fav"/>
+                                                            <field name="customers"/>
+                                                            <field name="cfes"/>
+                                                            <field name="ac"/>
+                                                            <field name="cca"/>
                                                         </group>
                                                         <group colspan="4">
-                                                        <separator string="TRESORERIE ACTIF" colspan="4"/>
-                                                        <field name="total_treso_actif" readonly="1" />
-                                                        <field name="bcctdp"/>
+                                                            <separator string="TRESORERIE ACTIF" colspan="4"/>
+                                                            <field name="total_treso_actif" readonly="1" />
+                                                            <field name="bcctdp"/>
                                                         </group>
                                                         <group colspan="4">
-                                                        <separator string="TOTAL ACTIF" colspan="4"/>
-                                                        <field name="total_actif" readonly="1"/>
+                                                            <separator string="Ecart de Conversion-Actif" colspan="4"/>
+                                                            <field name="eca"/>
+                                                        </group>
+                                                        <group colspan="4">
+                                                            <separator string="TOTAL ACTIF" colspan="4"/>
+                                                            <field name="total_actif" readonly="1"/>
                                                         </group>
                                                     </group>
 
@@ -113,6 +117,10 @@
                                                             <field name="bcc"/>
                                                         </group>
                                                         <group colspan="4">
+                                                            <separator string="Ecart de Conversion-Passif" colspan="4"/>
+                                                            <field name="ecp"/>
+                                                            </group>
+                                                        <group colspan="4">
                                                             <separator string="TOTAL PASSIF" colspan="4"/>
                                                             <field name="total_passif"  readonly="1"/>
                                                         </group>
@@ -128,7 +136,7 @@
                                                     <group colspan="4">
                                                         <field name="ampmc"/>
                                                         <field name="vds"/>
-                                                        <separator string="Autres Charges" colspan="4"/>
+                                                        <separator string="AUTRES DEPENSES" colspan="4"/>
                                                         <field name="other_charges" readonly="1"/>
                                                         <field name="td"/>
                                                         <field name="seosa"/>
@@ -162,18 +170,18 @@
                                                     <group colspan="4">
                                                         <field name="vmp"/>
                                                         <field name="stf"/>
-                                                        <separator string="AUTRES PRODUITS" colspan="4"/>
+                                                        <separator string="AUTRES REVENUS" colspan="4"/>
                                                         <field name="other_products" readonly="1"/>
                                                         <field name="pa"/>
                                                         <field name="subv"/>
                                                         <field name="ap1"/>
+                                                        <field name="psi"/>
                                                         <separator string="TRANSFERT DE CHARGES" colspan="4"/>
                                                         <field name="tdc"/>
                                                         <separator string="REPRISE D'AMMORTISSEMENTS ET PROVISIONS" colspan="4"/>
                                                         <field name="rap"/>
-
-                                                        <separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
-                                                        <field name="aprov"/>
+                                                        <!--<separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
+                                                        <field name="aprov"/>-->
                                                         <separator string="Total Produits d'Exploitation" colspan="4"/>
                                                         <field name="total_exp_products"/>
                                                         <field name="red"/>

@@ -40,6 +40,7 @@
              "views/ir_actions_report_xml.xml",
              "views/sale_order.xml",
              "views/sphere_company_fiscalyear.xml",
+             "views/sphere_reporting_history.xml",
              "wizard/report_order/report_order_wizard_view.xml",
              "reports/product_A.xml",
              "reports/product_B.xml",

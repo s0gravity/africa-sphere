@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+
+<template id="assets_backend" name="visual_export assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+        <script type="text/javascript" src="/visual_export/static/src/js/export.js"></script>
+        <link rel="stylesheet" href="/visual_export/static/src/css/export.css"/>
+    </xpath>
+</template>
+	</data>
+</openerp>
