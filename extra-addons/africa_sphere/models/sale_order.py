@@ -180,6 +180,8 @@ class sale_order(models.Model):
                     'total_cp_var': 0,
                     'total_pc_var': 0,
                     'total_tp_var': 0,
+                    'eca_var':0,
+                    'ecp_var':0,
                     'total_passif_var': 0,
                     'cs_n': 0,
                     'act_cna_n': 0,
@@ -401,6 +403,7 @@ class sale_order(models.Model):
                         vals['ac_n']=company_fiscalyear_n.ac
                         vals['cca_n']=company_fiscalyear_n.cca
                         vals['bcctdp_n']=company_fiscalyear_n.bcctdp
+                        vals['eca_n']=company_fiscalyear_n.eca
                         vals['total_ai_n']=vals['tr_bt_n']+vals['fdc_br_log_n']+vals['ci_n']+vals['miia_n']+vals['mdbmi_n']+vals['mdtem_n']+vals['af_n']+vals['other_actif_n']
                         vals['total_ac_n']=vals['stock_n']+vals['fav_n']+vals['customers_n']+vals['cfes_n']+vals['ac_n']+vals['cca_n']
                         vals['total_ta_n']=vals['bcctdp_n']
@@ -420,6 +423,7 @@ class sale_order(models.Model):
                         vals['ad_n']=company_fiscalyear_n.ad
                         vals['pca_n']=company_fiscalyear_n.pca
                         vals['bcc_n']=company_fiscalyear_n.bcc
+                        vals['ecp_n']=company_fiscalyear_n.ecp
                         vals['total_cp_n']=vals['cs_n']+vals['act_cna_n']+vals['ran_n']+vals['ra_n']+vals['reserves_n']+vals['arpc_n']+vals['df_n']+vals['aycpr_n']
                         vals['total_pc_n']=vals['cap_n']+vals['dfr_n']+vals['dfes_n']+vals['ad_n']+vals['pca_n']
                         vals['total_tp_n']=vals['bcc_n']
@@ -451,6 +455,7 @@ class sale_order(models.Model):
                         vals['pa_n']=company_fiscalyear_n.pa
                         vals['subv_n']=company_fiscalyear_n.subv
                         vals['ap1_n']=company_fiscalyear_n.ap1
+                        vals['psi_n']=company_fiscalyear_n.psi
                         vals['tdc_n']=company_fiscalyear_n.tdc
                         vals['cp_n']=company_fiscalyear_n.cp
                         vals['rap_n']=company_fiscalyear_n.rap
@@ -513,6 +518,7 @@ class sale_order(models.Model):
                         vals['ac_n_1']=company_fiscalyear_n_1.ac
                         vals['cca_n_1']=company_fiscalyear_n_1.cca
                         vals['bcctdp_n_1']=company_fiscalyear_n_1.bcctdp
+                        vals['eca_n_1']=company_fiscalyear_n_1.eca
                         vals['total_ai_n_1'] = vals['tr_bt_n_1'] + vals['fdc_br_log_n_1'] + vals['ci_n_1'] + vals['miia_n_1'] + vals['mdbmi_n_1'] + vals['mdtem_n_1'] + vals['af_n_1'] + vals['other_actif_n_1']
                         vals['total_ac_n_1'] = vals['stock_n_1'] + vals['fav_n_1'] + vals['customers_n_1'] + vals['cfes_n_1'] + vals['ac_n_1'] + vals['cca_n_1']
                         vals['total_ta_n_1'] = vals['bcctdp_n_1']
@@ -532,6 +538,7 @@ class sale_order(models.Model):
                         vals['ad_n_1']=company_fiscalyear_n_1.ad
                         vals['pca_n_1']=company_fiscalyear_n_1.pca
                         vals['bcc_n_1']=company_fiscalyear_n_1.bcc
+                        vals['ecp_n_1']=company_fiscalyear_n_1.ecp
                         vals['total_cp_n_1'] = vals['cs_n_1'] + vals['act_cna_n_1'] + vals['ran_n_1'] + vals['ra_n_1'] + vals['reserves_n_1'] + vals['arpc_n_1'] + vals['df_n_1'] + vals['aycpr_n_1']
                         vals['total_pc_n_1'] = vals['cap_n_1'] + vals['dfr_n_1'] + vals['dfes_n_1'] + vals['ad_n_1'] + vals['pca_n_1']
                         vals['total_tp_n_1'] = vals['bcc_n_1']
@@ -563,6 +570,7 @@ class sale_order(models.Model):
                         vals['pa_n_1'] = company_fiscalyear_n_1.pa
                         vals['subv_n_1'] = company_fiscalyear_n_1.subv
                         vals['ap1_n_1'] = company_fiscalyear_n_1.ap1
+                        vals['psi_n_1']=company_fiscalyear_n_1.psi
                         vals['tdc_n_1'] = company_fiscalyear_n_1.tdc
                         vals['cp_n_1'] = company_fiscalyear_n_1.cp
                         vals['rap_n_1'] = company_fiscalyear_n_1.rap
@@ -613,6 +621,8 @@ class sale_order(models.Model):
                     vals['total_ta_var'] = int(round((((vals['total_ta_n'] - vals['total_ta_n_1']) / vals['total_ta_n_1']) * 100)))
                 if isinstance(vals['total_actif_n'], float) == True and isinstance(vals['total_actif_n_1'], float) == True and vals['total_actif_n_1'] != 0:
                     vals['total_actif_var'] = int(round((((vals['total_actif_n'] - vals['total_actif_n_1']) / vals['total_actif_n_1']) * 100)))
+                if isinstance(vals['eca_n'], float) == True and isinstance(vals['eca_n_1'], float) == True and vals['eca_n_1'] != 0:
+                    vals['eca_var'] = int(round((((vals['eca_n'] - vals['eca_n_1']) / vals['eca_n_1']) * 100)))
                 # var passif
                 if isinstance(vals['total_cp_n'], float) == True and isinstance(vals['total_cp_n_1'], float) == True and vals['total_cp_n_1'] != 0:
                     vals['total_cp_var'] = int(round((((vals['total_cp_n'] - vals['total_cp_n_1']) / vals['total_cp_n_1']) * 100)))
@@ -622,6 +632,8 @@ class sale_order(models.Model):
                     vals['total_tp_var'] = int(round((((vals['total_tp_n'] - vals['total_tp_n_1']) / vals['total_tp_n_1']) * 100)))
                 if isinstance(vals['total_passif_n'], float) == True and isinstance(vals['total_passif_n_1'], float) == True and vals['total_passif_n_1'] != 0:
                     vals['total_passif_var'] = int(round((((vals['total_passif_n'] - vals['total_passif_n_1']) / vals['total_passif_n_1']) * 100)))
+                if isinstance(vals['ecp_n'], float) == True and isinstance(vals['ecp_n_1'], float) == True and vals['ecp_n_1'] != 0:
+                    vals['ecp_var'] = int(round((((vals['ecp_n'] - vals['ecp_n_1']) / vals['ecp_n_1']) * 100)))
                 # var charges
                 if isinstance(vals['ampmc_n'], float)==True and isinstance(vals['ampmc_n_1'], float)==True and vals['ampmc_n_1'] != 0:
                     vals['ampmc_var'] = int(round((((vals['ampmc_n'] - vals['ampmc_n_1']) / vals['ampmc_n_1']) * 100)))
