@@ -38,6 +38,23 @@ class sale_order(models.Model):
     company_fiscalyear_id2 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N-1")
     #informations sur commande
 
+    #Couleurs ratios
+    ratio_fond_roulement = fields.Selection(string="FOND DE ROULEMENT NET = FDR", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rotation_stock = fields.Selection(string="ROTATION DES STOCKS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_besoin_fond_roulement = fields.Selection(string="BESOIN EN FOND DE ROULEMENT = BFR", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_clients = fields.Selection(string="ROTATION DES CLIENTS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_treso_net = fields.Selection(string="TRESORERIE NETTE", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rotation_fournisseurs = fields.Selection(string="ROTATION DES FOURNISSEURS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_liquid_test = fields.Selection(string="LIQUIDITE 'Liquid Test' EN % (> 1)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_degree_endettement = fields.Selection(string="DEGRE ENDETTEMENT EN %", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_autonomie_financiere = fields.Selection(string="DEGRE AUTONOMIE FINANCIERE (= ou > 20%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_dettes_fin_cafg = fields.Selection(string="DETTES FIN. / CAFG", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rn_caff_ht = fields.Selection(string="RN / CAFF HT % (> 0%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_cont_exp = fields.Selection(string="CONTINUE EXPLOITATION EN % (> 50%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_capacite_fin = fields.Selection(string="Capacité d'autofinancement ou CAFG", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    #Couleurs ratios
+
+
     @api.v8
     def sale_order_print_auto(self,report_name):
         html = self.env['report'].with_context({'active_ids':[self.id]}).get_html(self,report_name)
@@ -404,10 +421,10 @@ class sale_order(models.Model):
                         vals['cca_n']=company_fiscalyear_n.cca
                         vals['bcctdp_n']=company_fiscalyear_n.bcctdp
                         vals['eca_n']=company_fiscalyear_n.eca
-                        vals['total_ai_n']=vals['tr_bt_n']+vals['fdc_br_log_n']+vals['ci_n']+vals['miia_n']+vals['mdbmi_n']+vals['mdtem_n']+vals['af_n']+vals['other_actif_n']
-                        vals['total_ac_n']=vals['stock_n']+vals['fav_n']+vals['customers_n']+vals['cfes_n']+vals['ac_n']+vals['cca_n']
-                        vals['total_ta_n']=vals['bcctdp_n']
-                        vals['total_actif_n']=vals['total_ai_n']+vals['total_ac_n']+vals['total_ta_n']
+                        vals['total_ai_n']=company_fiscalyear_n.total_actif_immobilise
+                        vals['total_ac_n']=company_fiscalyear_n.total_actif_circulant
+                        vals['total_ta_n']=company_fiscalyear_n.total_treso_actif
+                        vals['total_actif_n']=company_fiscalyear_n.total_actif
                         # passif N
                         vals['cs_n']=company_fiscalyear_n.cs
                         vals['act_cna_n']=company_fiscalyear_n.act_cna
@@ -424,10 +441,10 @@ class sale_order(models.Model):
                         vals['pca_n']=company_fiscalyear_n.pca
                         vals['bcc_n']=company_fiscalyear_n.bcc
                         vals['ecp_n']=company_fiscalyear_n.ecp
-                        vals['total_cp_n']=vals['cs_n']+vals['act_cna_n']+vals['ran_n']+vals['ra_n']+vals['reserves_n']+vals['arpc_n']+vals['df_n']+vals['aycpr_n']
-                        vals['total_pc_n']=vals['cap_n']+vals['dfr_n']+vals['dfes_n']+vals['ad_n']+vals['pca_n']
-                        vals['total_tp_n']=vals['bcc_n']
-                        vals['total_passif_n']=vals['total_cp_n']+vals['total_pc_n']+vals['total_tp_n']
+                        vals['total_cp_n']=company_fiscalyear_n.total_capitaux_perman
+                        vals['total_pc_n']=company_fiscalyear_n.total_passif_circulant
+                        vals['total_tp_n']=company_fiscalyear_n.total_treso_passif
+                        vals['total_passif_n']=company_fiscalyear_n.total_passif
                         # Charge N
                         vals['ampmc_n']=company_fiscalyear_n.ampmc
                         vals['vds_n']=company_fiscalyear_n.vds
@@ -446,8 +463,8 @@ class sale_order(models.Model):
                         vals['rhb_n']=company_fiscalyear_n.rhb
                         vals['islr_n']=company_fiscalyear_n.islr
                         vals['total_es_n']=company_fiscalyear_n.total_es
-                        vals['total_autre_charges_n']=vals['td_n']+vals['seosa_n']+vals['seosb_n']+vals['ac1_n']
-                        vals['total_charges_n']=vals['total_charges_exp_n']+vals['cf_n']+vals['ch_n']
+                        vals['total_autre_charges_n']=company_fiscalyear_n.other_charges
+                        vals['total_charges_n']=company_fiscalyear_n.total_charges
                         #vals['total_beneficiaire_n']=vals['']
                         # Produit N
                         vals['vmp_n']=company_fiscalyear_n.vmp
@@ -465,8 +482,8 @@ class sale_order(models.Model):
                         vals['rfd_n']=company_fiscalyear_n.rfd
                         vals['ph_n']=company_fiscalyear_n.ph
                         vals['rhd_n']=company_fiscalyear_n.rhd
-                        vals['total_autre_produits_n']=vals['pa_n']+vals['subv_n']+vals['ap1_n']
-                        vals['total_produits_n']=vals['total_exp_products_n']+vals['pf_n']+vals['ph_n']
+                        vals['total_autre_produits_n']=company_fiscalyear_n.other_products
+                        vals['total_produits_n']=company_fiscalyear_n.total_products
                         # ratios N
                         vals['fdr_n']=vals['total_cp_n']-vals['total_ai_n']
                         vals['amc_n']=int(round(vals['ampmc_n']+(vals['ampmc_n']*tva)/100))
@@ -519,10 +536,10 @@ class sale_order(models.Model):
                         vals['cca_n_1']=company_fiscalyear_n_1.cca
                         vals['bcctdp_n_1']=company_fiscalyear_n_1.bcctdp
                         vals['eca_n_1']=company_fiscalyear_n_1.eca
-                        vals['total_ai_n_1'] = vals['tr_bt_n_1'] + vals['fdc_br_log_n_1'] + vals['ci_n_1'] + vals['miia_n_1'] + vals['mdbmi_n_1'] + vals['mdtem_n_1'] + vals['af_n_1'] + vals['other_actif_n_1']
-                        vals['total_ac_n_1'] = vals['stock_n_1'] + vals['fav_n_1'] + vals['customers_n_1'] + vals['cfes_n_1'] + vals['ac_n_1'] + vals['cca_n_1']
-                        vals['total_ta_n_1'] = vals['bcctdp_n_1']
-                        vals['total_actif_n_1'] = vals['total_ai_n_1'] + vals['total_ac_n_1'] + vals['total_ta_n_1']
+                        vals['total_ai_n_1']=company_fiscalyear_n_1.total_actif_immobilise
+                        vals['total_ac_n_1']=company_fiscalyear_n_1.total_actif_circulant
+                        vals['total_ta_n_1']=company_fiscalyear_n_1.total_treso_actif
+                        vals['total_actif_n_1']=company_fiscalyear_n_1.total_actif
                         # passif N-1
                         vals['cs_n_1']=company_fiscalyear_n_1.cs
                         vals['act_cna_n_1'] = company_fiscalyear_n_1.act_cna
@@ -539,10 +556,10 @@ class sale_order(models.Model):
                         vals['pca_n_1']=company_fiscalyear_n_1.pca
                         vals['bcc_n_1']=company_fiscalyear_n_1.bcc
                         vals['ecp_n_1']=company_fiscalyear_n_1.ecp
-                        vals['total_cp_n_1'] = vals['cs_n_1'] + vals['act_cna_n_1'] + vals['ran_n_1'] + vals['ra_n_1'] + vals['reserves_n_1'] + vals['arpc_n_1'] + vals['df_n_1'] + vals['aycpr_n_1']
-                        vals['total_pc_n_1'] = vals['cap_n_1'] + vals['dfr_n_1'] + vals['dfes_n_1'] + vals['ad_n_1'] + vals['pca_n_1']
-                        vals['total_tp_n_1'] = vals['bcc_n_1']
-                        vals['total_passif_n_1'] = vals['total_cp_n_1'] + vals['total_pc_n_1'] + vals['total_tp_n_1']
+                        vals['total_cp_n_1']=company_fiscalyear_n_1.total_capitaux_perman
+                        vals['total_pc_n_1']=company_fiscalyear_n_1.total_passif_circulant
+                        vals['total_tp_n_1']=company_fiscalyear_n_1.total_treso_passif
+                        vals['total_passif_n_1']=company_fiscalyear_n_1.total_passif
                         # Charge N-1
                         vals['ampmc_n_1'] = company_fiscalyear_n_1.ampmc
                         vals['vds_n_1'] = company_fiscalyear_n_1.vds
@@ -561,8 +578,8 @@ class sale_order(models.Model):
                         vals['rhb_n_1'] = company_fiscalyear_n_1.rhb
                         vals['islr_n_1'] = company_fiscalyear_n_1.islr
                         vals['total_es_n_1'] = company_fiscalyear_n_1.total_es
-                        vals['total_autre_charges_n_1'] = vals['td_n_1'] + vals['seosa_n_1'] + vals['seosb_n_1'] + vals['ac1_n_1']
-                        vals['total_charges_n_1'] = vals['total_charges_exp_n_1'] + vals['cf_n_1'] + vals['ch_n_1']
+                        vals['total_autre_charges_n_1'] = company_fiscalyear_n_1.other_charges
+                        vals['total_charges_n_1'] = company_fiscalyear_n_1.total_charges
                         #vals['total_beneficiaire_n_1'] = vals['']
                         # Produit N-1
                         vals['vmp_n_1'] = company_fiscalyear_n_1.vmp
@@ -580,8 +597,8 @@ class sale_order(models.Model):
                         vals['rfd_n_1'] = company_fiscalyear_n_1.rfd
                         vals['ph_n_1'] = company_fiscalyear_n_1.ph
                         vals['rhd_n_1'] = company_fiscalyear_n_1.rhd
-                        vals['total_autre_produits_n_1'] = vals['pa_n_1'] + vals['subv_n_1'] + vals['ap1_n_1']
-                        vals['total_produits_n_1'] = vals['total_exp_products_n_1'] + vals['pf_n_1'] + vals['ph_n_1']
+                        vals['total_autre_produits_n_1'] = company_fiscalyear_n_1.other_products
+                        vals['total_produits_n_1'] = company_fiscalyear_n_1.total_products
                         # ratios N-1
                         vals['fdr_n_1'] = vals['total_cp_n_1'] - vals['total_ai_n_1']
                         vals['amc_n_1'] = int(round(vals['ampmc_n_1'] + (vals['ampmc_n_1'] * tva) / 100))

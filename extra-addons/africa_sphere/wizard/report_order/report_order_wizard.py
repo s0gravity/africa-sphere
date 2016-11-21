@@ -18,6 +18,52 @@ class report_order_wizard(models.TransientModel):
     sale_order_id = fields.Many2one(comodel_name="sale.order", string="Bon de commande", domain=[('state','=','draft')])
     company_fiscalyear_id1 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N")
     company_fiscalyear_id2 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N-1")
+
+    #informations sur commande
+    document_to = fields.Char(string="DOCUMENT A L'USAGE EXCLUSIF DE")
+    partners_ref = fields.Char(string="Références Clients / Ref. De la commande")
+    request_date = fields.Date(string="Date de la requête")
+    response_date = fields.Date(string="Date de réponse de @SPHERES")
+    response_delay = fields.Integer(string="Delais de Réponse (en jours)")
+    customer_internal_code = fields.Char(string="CODE CLIENT INTERNE")
+    credit_solicite = fields.Float(string="ENCOURS CREDIT SOLICITE",digits=(6,2))
+    credit_rec = fields.Float(string="ENCOURS CREDIT RECOMMANDE PAR @SPHERE",digits=(6,2))
+    credit_approval_percent = fields.Float(string="% Accord Crédit @SPHERE",digits=(6,2))
+    comment_sphere = fields.Text(string="COMMENTAIRES")
+    principal_partner_ids = fields.One2many(comodel_name="principal.partner", inverse_name="sale_order_id", string="PARTENAIRES PRINCIPAUX")
+    strenght1 = fields.Text(string="1")
+    strenght2 = fields.Text(string="2")
+    strenght3 = fields.Text(string="3")
+    strenght4 = fields.Text(string="4")
+    strenght5 = fields.Text(string="5")
+    weakness1 = fields.Text(string="1")
+    weakness2 = fields.Text(string="2")
+    weakness3 = fields.Text(string="3")
+    weakness4 = fields.Text(string="4")
+    weakness5 = fields.Text(string="5")
+    short_term_dyn = fields.Text(string="Dynamisme à Court Terme")
+    short_term_risks = fields.Text(string="Risques Potentiels à Court Terme")
+    company_fiscalyear_id1 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N")
+    company_fiscalyear_id2 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N-1")
+    #informations sur commande
+
+    #Couleurs ratios
+    ratio_fond_roulement = fields.Selection(string="FOND DE ROULEMENT NET = FDR", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rotation_stock = fields.Selection(string="ROTATION DES STOCKS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_besoin_fond_roulement = fields.Selection(string="BESOIN EN FOND DE ROULEMENT = BFR", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_clients = fields.Selection(string="ROTATION DES CLIENTS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_treso_net = fields.Selection(string="TRESORERIE NETTE", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rotation_fournisseurs = fields.Selection(string="ROTATION DES FOURNISSEURS en jours", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_liquid_test = fields.Selection(string="LIQUIDITE 'Liquid Test' EN % (> 1)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_degree_endettement = fields.Selection(string="DEGRE ENDETTEMENT EN %", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_autonomie_financiere = fields.Selection(string="DEGRE AUTONOMIE FINANCIERE (= ou > 20%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_dettes_fin_cafg = fields.Selection(string="DETTES FIN. / CAFG", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_rn_caff_ht = fields.Selection(string="RN / CAFF HT % (> 0%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_cont_exp = fields.Selection(string="CONTINUE EXPLOITATION EN % (> 50%)", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    ratio_capacite_fin = fields.Selection(string="Capacité d'autofinancement ou CAFG", selection=[('green', 'Vert'), ('orange', 'Orange'),('red','Rouge') ])
+    #Couleurs ratios
+
+
     def _print_excel(self,report_name,model,res_id):
 
         if report_name == "africa_sphere.product_A_template":
@@ -151,6 +197,51 @@ class report_order_wizard(models.TransientModel):
             }
             new_line = self.env['sale.order.line'].create(sale_order_line_vals)
             new_line.tax_id = self.product_id.taxes_id
+
+        #informations sur commande
+        sale_order.document_to = self.document_to
+        sale_order.partners_ref = self.partners_ref
+        sale_order.request_date = self.request_date
+        sale_order.response_date = self.response_date
+        sale_order.response_delay = self.response_delay
+        sale_order.customer_internal_code = self.customer_internal_code
+        sale_order.credit_solicite = self.credit_solicite
+        sale_order.credit_rec = self.credit_rec
+        sale_order.credit_approval_percent = self.credit_approval_percent
+        sale_order.comment_sphere = self.comment_sphere
+        sale_order.principal_partner_ids = self.principal_partner_ids
+        sale_order.strenght1 = self.strenght1
+        sale_order.strenght2 = self.strenght2
+        sale_order.strenght3 = self.strenght3
+        sale_order.strenght4 = self.strenght4
+        sale_order.strenght5 = self.strenght5
+        sale_order.weakness1 = self.weakness1
+        sale_order.weakness2 = self.weakness2
+        sale_order.weakness3 = self.weakness3
+        sale_order.weakness4 = self.weakness4
+        sale_order.weakness5 = self.weakness5
+        sale_order.short_term_dyn = self.short_term_dyn
+        sale_order.short_term_risks = self.short_term_risks
+        sale_order.company_fiscalyear_id1 = self.company_fiscalyear_id1
+        sale_order.company_fiscalyear_id2 = self.company_fiscalyear_id2
+        #informations sur commande
+
+        #Couleurs ratios
+        sale_order.ratio_fond_roulement = self.ratio_fond_roulement
+        sale_order.ratio_rotation_stock = self.ratio_rotation_stock
+        sale_order.ratio_besoin_fond_roulement = self.ratio_besoin_fond_roulement
+        sale_order.ratio_clients = self.ratio_clients
+        sale_order.ratio_treso_net = self.ratio_treso_net
+        sale_order.ratio_rotation_fournisseurs = self.ratio_rotation_fournisseurs
+        sale_order.ratio_liquid_test = self.ratio_liquid_test
+        sale_order.ratio_degree_endettement = self.ratio_degree_endettement
+        sale_order.ratio_autonomie_financiere = self.ratio_autonomie_financiere
+        sale_order.ratio_dettes_fin_cafg = self.ratio_dettes_fin_cafg
+        sale_order.ratio_rn_caff_ht = self.ratio_rn_caff_ht
+        sale_order.ratio_cont_exp = self.ratio_cont_exp
+        sale_order.ratio_capacite_fin = self.ratio_capacite_fin
+        #Couleurs ratios
+
 
         #Sale report generation
         companies_string = ''

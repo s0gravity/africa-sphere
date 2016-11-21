@@ -712,6 +712,30 @@
     color: white;
 }
 
+.bg_red_img{
+    background-image: url(../img/red.png);
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    Background-position : center center ;
+    color: white;
+}
+
+.bg_green_img{
+    background-image: url(../img/green.png);
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    Background-position : center center ;
+    color: white;
+}
+
+.bg_orange_img{
+    background-image: url(../img/orange.png);
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    Background-position : center center ;
+    color: white;
+}
+
 .table_ratios_spheres td {
     border: 1px solid black;
     text-align: center;
