@@ -30,7 +30,7 @@
                             <tr><td><span><t t-esc="o._get_header_infos()['current_year']" /></span></td></tr>
                         </table>
                         <table class="table_prototype common_style">
-                            <tr><th colspan="3">@SPHERES PROTOTYPE &lt;==&gt; CREDIT RISK INFORMATION</th></tr>
+                            <tr><th colspan="3">@SPHERES B-R-I-C-S : Business Risks Inquiry Conclusions &#38; Summury</th></tr>
                             <tr>
                                 <td><strong>A</strong> = INFORMATIONS LEGALES</td><td><strong>D</strong> = EVALUATION @SPHERES</td><td></td>
                             </tr>
