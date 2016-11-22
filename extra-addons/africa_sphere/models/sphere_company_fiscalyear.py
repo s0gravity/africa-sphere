@@ -182,13 +182,19 @@ class sphere_company_fiscalyear(models.Model):
     @api.depends('total_charges','total_products')
     def _rd(self):
         rd = self.total_products - self.total_charges
-        self.rd = rd < 0 and rd or 0.00
+        self.rd = rd < 0 and (rd)*-1 or 0.00
 
     @api.one
     @api.constrains('cap','dfr','dfes','ad','pca','cs','act_cna','ran','ra','reserves','arpc','df','aycpr','bcc','stock','fav','customers','cfes','ac','cca','tr_bt','fdc_br_log','ci','miia','mdbmi','mdtem','af','other_actif','bcctdp')
     def _check_actif_passif(self):
         if self.total_actif != self.total_passif:
-            raise exceptions.ValidationError("L'actif et le pasif ne sont pas équilibrés")
+            raise exceptions.ValidationError("L'actif et le pasif ne sont pas équilibrés ( "+str(self.total_actif)+" / "+str(self.total_passif)+" )")
+
+    @api.one
+    @api.constrains('ra','vmp','stf','pa','subv','ap1','psi','tdc','rap','total_exp_products','pf','ph','ampmc','vds','td','seosa','seosb','ac1','it','ap','total_charges_exp','cf','ch')
+    def _check_net_result(self):
+        if self.ra != self.rd and self.ra != self.rb:
+            raise exceptions.ValidationError("le résultat Net du Bilan et du Compte de résultat ne sont pas les mêmes ! ( "+str(self.ra)+" / "+str(self.rd != 0 and self.rd or self.rb)+" )")
 
     @api.one
     @api.depends('total_charges_exp','total_exp_products')
