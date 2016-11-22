@@ -604,17 +604,13 @@
     background-color: #DCDAFF;
 }
 
-.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(26) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(48) td:nth-child(n+2){
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(24) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(27) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(47) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(49) td:nth-child(n+2){
     background-color: green;
     font-weight: bold;
     text-align: center;
 }
 
-.table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2){
-    background-color: #DCDAFF;
-}
-
-.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(23) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(26) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(48) td:nth-child(n+6){
+.table_donnees_financiers_comptables tr:nth-child(4) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(24) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(27) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(47) td:nth-child(n+6), .table_donnees_financiers_comptables tr:nth-child(49) td:nth-child(n+6){
     background-color: dodgerblue;
 }
 
@@ -636,14 +632,49 @@
     text-align: center;
 }
 
-.table_donnees_financiers_comptables tr:nth-child(24) td:nth-child(2){
-    background-color: #DCDAFF;
-}
 
 .table_donnees_financiers_comptables tr:nth-child(40) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(40) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(47) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(49) td:nth-child(2){
     font-weight: bold;
     text-align: center;
 }
+
+.table_donnees_financiers_comptables tr:nth-child(25) td:nth-child(n+2), .table_donnees_financiers_comptables tr:nth-child(26) td:nth-child(n+2){
+    background-color: #DCDAFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(29), .table_donnees_financiers_comptables tr:nth-child(31), .table_donnees_financiers_comptables tr:nth-child(33) , .table_donnees_financiers_comptables tr:nth-child(35) , .table_donnees_financiers_comptables tr:nth-child(37), .table_donnees_financiers_comptables tr:nth-child(39) td{
+    background-color: #DCDAFF;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(28),.table_donnees_financiers_comptables tr:nth-child(30),.table_donnees_financiers_comptables tr:nth-child(32),.table_donnees_financiers_comptables tr:nth-child(34),.table_donnees_financiers_comptables tr:nth-child(36),.table_donnees_financiers_comptables tr:nth-child(38),.table_donnees_financiers_comptables tr:nth-child(40) td{
+    background-color: white;
+}
+.table_donnees_financiers_comptables tr:nth-child(42), .table_donnees_financiers_comptables tr:nth-child(44), .table_donnees_financiers_comptables tr:nth-child(46) td{
+    background-color: white;
+    text-align: left;
+}
+
+.table_donnees_financiers_comptables tr:nth-child(48), .table_donnees_financiers_comptables tr:nth-child(50) td{
+    background-color: white;
+    text-align: center;
+}
+.table_donnees_financiers_comptables tr:nth-child(41), .table_donnees_financiers_comptables tr:nth-child(43), .table_donnees_financiers_comptables tr:nth-child(45) td{
+    background-color: #DCDAFF;
+    font-weight: bold;
+    text-align: center;
+}
+.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(42) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(44) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(46) td:nth-child(7) {
+    text-align: left;
+    background-color: white;
+    font-weight: normal;
+}
+.table_donnees_financiers_comptables tr:nth-child(41) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(41) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(43) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(43) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(45) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(45) td:nth-child(7),.table_donnees_financiers_comptables tr:nth-child(48) td:nth-child(2),.table_donnees_financiers_comptables tr:nth-child(50) td:nth-child(2){
+    font-weight: bold;
+    text-align: center;
+}
+
 
 /* style table radios spheres*/
 

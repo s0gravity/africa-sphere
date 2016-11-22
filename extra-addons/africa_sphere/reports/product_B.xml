@@ -671,7 +671,7 @@
                                     <td><t t-if="company['bcc_n_1']!=0"><span><t t-esc="o.sep_f(company['bcc_n_1'])"/></span></t></td>
                                     <td></td>
                                 </tr>
-                                <!--<tr>
+                                <tr>
                                     <td></td>
                                     <td>Ecart de Conversion-Actif</td>
                                     <td><t t-if="company['eca_n']!=0"><span><t t-esc="o.sep_f(company['eca_n'])"/></span></t></td>
@@ -682,7 +682,7 @@
                                     <td><t t-if="company['ecp_n']!=0"><span><t t-esc="o.sep_f(company['ecp_n'])"/></span></t></td>
                                     <td><t t-if="company['ecp_n_1']!=0"><span><t t-esc="o.sep_f(company['ecp_n_1'])"/></span></t></td>
                                     <td><t t-if="company['ecp_var']!=0"><span><t t-esc="company['ecp_var']"/></span>%</t></td>
-                                </tr>-->
+                                </tr>
                                 <tr>
                                     <td></td>
                                     <td>TOTAL ACTIF</td>

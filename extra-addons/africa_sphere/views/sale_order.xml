@@ -83,21 +83,21 @@
                                 <group col="4">
                                     <separator string="RATIOS D'ANALYSE" colspan="4"/>
                                     <group colspan="2">
-                                        <field name="ratio_fond_roulement"/>
-                                        <field name="ratio_besoin_fond_roulement"/>
-                                        <field name="ratio_treso_net"/>
-                                        <field name="ratio_liquid_test"/>
-                                        <field name="ratio_autonomie_financiere"/>
-                                        <field name="ratio_rn_caff_ht"/>
-                                        <field name="ratio_capacite_fin"/>
+                                        <field name="ratio_fond_roulement" readonly="1"/>
+                                        <field name="ratio_besoin_fond_roulement" readonly="1"/>
+                                        <field name="ratio_treso_net" readonly="1"/>
+                                        <field name="ratio_liquid_test" readonly="1"/>
+                                        <field name="ratio_autonomie_financiere" readonly="1"/>
+                                        <field name="ratio_rn_caff_ht" readonly="1"/>
+                                        <field name="ratio_capacite_fin" readonly="1"/>
                                     </group>
                                     <group colspan="2">
-                                        <field name="ratio_rotation_stock"/>
-                                        <field name="ratio_clients"/>
-                                        <field name="ratio_rotation_fournisseurs"/>
-                                        <field name="ratio_degree_endettement"/>
-                                        <field name="ratio_dettes_fin_cafg"/>
-                                        <field name="ratio_cont_exp"/>
+                                        <field name="ratio_rotation_stock" readonly="1"/>
+                                        <field name="ratio_clients" readonly="1"/>
+                                        <field name="ratio_rotation_fournisseurs" readonly="1"/>
+                                        <field name="ratio_degree_endettement" readonly="1"/>
+                                        <field name="ratio_dettes_fin_cafg" readonly="1"/>
+                                        <field name="ratio_cont_exp" readonly="1"/>
                                     </group>
                                 </group>
                             </page>
