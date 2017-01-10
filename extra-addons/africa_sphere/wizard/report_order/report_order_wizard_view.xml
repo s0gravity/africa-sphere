@@ -35,12 +35,13 @@
                                         <field name="partners_ref"/>
                                         <field name="request_date"/>
                                         <field name="response_date"/>
-                                        <field name="response_delay"/>
+                                        <field name="response_delay" readonly="1" />
                                     </group>
                                     <group colspan="2">
+                                        <field name="credit_currency_id"/>
                                         <field name="credit_rec"/>
                                         <field name="credit_solicite"/>
-                                        <field name="credit_approval_percent"/>
+                                        <field name="credit_approval_percent" readonly="1"/>
                                     </group>
                                 </group>
                             </page>

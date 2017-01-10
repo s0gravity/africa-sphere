@@ -164,7 +164,7 @@
 
 .table_legal_information tr:nth-child(1) td {
     border: none;
-    background-color: yellow;
+    background-color: white;
     text-align: center;
 }
 
@@ -261,7 +261,7 @@
 }
 
 .table_current_actionnariat tr:nth-child(1) td {
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }
@@ -297,7 +297,7 @@
 }
 
 .table_info_customer_ref_order tr:nth-child(1) td {
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }
@@ -368,7 +368,7 @@
 }
 
 .table_evaluation_sphere tr:nth-child(1) td {
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }
@@ -461,7 +461,7 @@
 }
 
 .table_conclusions_recommandations_2 tr:nth-child(1) td {
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }
@@ -536,7 +536,7 @@
 }
 
 .table_donnees_financiers_comptables tr:nth-child(1) td, .table_donnees_financiers_comptables tr:nth-child(2) td {
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }
@@ -679,7 +679,7 @@
 /* style table radios spheres*/
 
 .table_ratios_spheres_title td{
-    background-color: yellow;
+    background-color: white;
     text-align: center;
     font-weight: bold;
 }

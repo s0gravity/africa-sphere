@@ -8,6 +8,7 @@ import base64
 import openpyxl
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Alignment, Font
+from dateutil import parser
 
 class report_order_wizard(models.TransientModel):
     _name = 'report.order.wizard'
@@ -24,11 +25,12 @@ class report_order_wizard(models.TransientModel):
     partners_ref = fields.Char(string="Références Clients / Ref. De la commande")
     request_date = fields.Date(string="Date de la requête")
     response_date = fields.Date(string="Date de réponse de @SPHERES")
-    response_delay = fields.Integer(string="Delais de Réponse (en jours)")
+    response_delay = fields.Integer(string="Delais de Réponse (en jours)",compute="_get_response_delay")
     customer_internal_code = fields.Char(string="CODE CLIENT INTERNE")
     credit_solicite = fields.Float(string="ENCOURS CREDIT SOLICITE",digits=(6,2))
-    credit_rec = fields.Float(string="ENCOURS CREDIT RECOMMANDE PAR @SPHERE",digits=(6,2))
-    credit_approval_percent = fields.Float(string="% Accord Crédit @SPHERE",digits=(6,2))
+    credit_rec = fields.Float(string="ENCOURS CREDIT RECOMMANDE PAR @SPHERES",digits=(6,2))
+    credit_approval_percent = fields.Float(string="% Accord Crédit @SPHERES",digits=(6,2),compute="_credit_approval_percent")
+    credit_currency_id = fields.Many2one(comodel_name="res.currency", string="Devise ENCOURS")
     comment_sphere = fields.Text(string="COMMENTAIRES")
     principal_partner_ids = fields.One2many(comodel_name="principal.partner", inverse_name="sale_order_id", string="PARTENAIRES PRINCIPAUX")
     strenght1 = fields.Text(string="1")
@@ -45,6 +47,19 @@ class report_order_wizard(models.TransientModel):
     short_term_risks = fields.Text(string="Risques Potentiels à Court Terme")
     company_fiscalyear_id1 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N")
     company_fiscalyear_id2 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N-1")
+
+    @api.one
+    @api.depends('request_date','response_date')
+    def _get_response_delay(self):
+        if self.request_date and self.response_date:
+            self.response_delay = ((parser.parse(self.response_date).date()) - (parser.parse(self.request_date).date())).days
+
+    @api.one
+    @api.depends('credit_solicite','credit_rec')
+    def _credit_approval_percent(self):
+        if self.credit_solicite and self.credit_rec:
+            self.credit_approval_percent = self.credit_rec/self.credit_solicite
+
     #informations sur commande
 
     #Couleurs ratios
@@ -81,7 +96,7 @@ class report_order_wizard(models.TransientModel):
             ce=ws.cell(column=4, row=2, value=title1)
             ce.font=ft
             header = ['Country Phone code','Country name','CENTRAL BANK Activity CODE','CENTRAL BANK Activity MAIN NAME','Activity wording','COMPANY NAME',
-                      'REGISTRATION NUMBER','CAPITAL = SHARES','TURNOVER YEAR-1','TURNOVER YEAR-2','NET RESULT YEAR-1','NET RESULT YEAR-2','@SPHERE ONGOING SCORING']
+                      'REGISTRATION NUMBER','CAPITAL = SHARES','TURNOVER YEAR-1','TURNOVER YEAR-2','NET RESULT YEAR-1','NET RESULT YEAR-2','@SPHERES ONGOING SCORING']
             header_mapping = ['country_phone_code','country_id.name','central_bank_activity_code','l_bank_activity_main','activity_wording','name',
                               'registration_number','capital','turnover_y1','turnover_y2','net_result_y1','net_result_y2','scoring']
             i = 1

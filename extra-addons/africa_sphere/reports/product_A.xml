@@ -27,9 +27,15 @@
         <!-- report layout footer -->
         <template id="sphere_layout_footer">
             <div class="footer">
-                <div class="text-center">
+                <div class="text-center" style="border-top: 1px solid black;font-size: 60%;">
+                    <t t-if="company.custom_footer">
+                        <span t-raw="company.rml_footer"/>
+                    </t>
                     <ul class="list-inline">
-                        <li><span class="page"/>/<span class="topage"/></li>
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +61,7 @@
                                 <td>TURNOVER YEAR-2</td>
                                 <td>NET RESULT YEAR-1</td>
                                 <td>NET RESULT YEAR-2</td>
-                                <td>@SPHERE ONGOING SCORING</td>
+                                <td>@SPHERES ONGOING SCORING</td>
                             </tr>
                         </thead>
                         <tbody class="sale_tbody">

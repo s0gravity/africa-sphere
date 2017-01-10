@@ -5,6 +5,7 @@ import openerp.addons.decimal_precision as dp
 from datetime import datetime
 import time
 import re
+from dateutil import parser
 
 class sale_order(models.Model):
     _inherit = 'sale.order'
@@ -18,8 +19,9 @@ class sale_order(models.Model):
     response_delay = fields.Integer(string="Delais de Réponse (en jours)")
     customer_internal_code = fields.Char(string="CODE CLIENT INTERNE")
     credit_solicite = fields.Float(string="ENCOURS CREDIT SOLICITE",digits=(6,2))
-    credit_rec = fields.Float(string="ENCOURS CREDIT RECOMMANDE PAR @SPHERE",digits=(6,2))
-    credit_approval_percent = fields.Float(string="% Accord Crédit @SPHERE",digits=(6,2))
+    credit_rec = fields.Float(string="ENCOURS CREDIT RECOMMANDE PAR @SPHERES",digits=(6,2))
+    credit_approval_percent = fields.Float(string="% Accord Crédit @SPHERES",digits=(6,2))
+    credit_currency_id = fields.Many2one(comodel_name="res.currency", string="Devise ENCOURS")
     comment_sphere = fields.Text(string="COMMENTAIRES")
     principal_partner_ids = fields.One2many(comodel_name="principal.partner", inverse_name="sale_order_id", string="PARTENAIRES PRINCIPAUX")
     strenght1 = fields.Text(string="1")
@@ -36,6 +38,19 @@ class sale_order(models.Model):
     short_term_risks = fields.Text(string="Risques Potentiels à Court Terme")
     company_fiscalyear_id1 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N")
     company_fiscalyear_id2 = fields.Many2one(comodel_name="account.fiscalyear", string="Exercice N-1")
+
+    @api.one
+    @api.depends('request_date','response_date')
+    def _get_response_delay(self):
+        if self.request_date and self.response_date:
+            self.response_delay = ((parser.parse(self.response_date).date()) - (parser.parse(self.request_date).date())).days
+
+    @api.one
+    @api.depends('credit_solicite','credit_rec')
+    def _credit_approval_percent(self):
+        if self.credit_solicite and self.credit_rec:
+            self.credit_approval_percent = self.credit_rec/self.credit_solicite
+
     #informations sur commande
 
     #Couleurs ratios
@@ -441,7 +456,7 @@ class sale_order(models.Model):
                         vals['pca_n']=company_fiscalyear_n.pca
                         vals['bcc_n']=company_fiscalyear_n.bcc
                         vals['ecp_n']=company_fiscalyear_n.ecp
-                        vals['total_cp_n']=company_fiscalyear_n.total_capitaux_perman
+                        vals['total_cp_n']=company_fiscalyear_n.total_capitaux_perman - company_fiscalyear_n.df - company_fiscalyear_n.aycpr
                         vals['total_pc_n']=company_fiscalyear_n.total_passif_circulant
                         vals['total_tp_n']=company_fiscalyear_n.total_treso_passif
                         vals['total_passif_n']=company_fiscalyear_n.total_passif
@@ -556,7 +571,7 @@ class sale_order(models.Model):
                         vals['pca_n_1']=company_fiscalyear_n_1.pca
                         vals['bcc_n_1']=company_fiscalyear_n_1.bcc
                         vals['ecp_n_1']=company_fiscalyear_n_1.ecp
-                        vals['total_cp_n_1']=company_fiscalyear_n_1.total_capitaux_perman
+                        vals['total_cp_n_1']=company_fiscalyear_n_1.total_capitaux_perman - company_fiscalyear_n_1.df - company_fiscalyear_n_1.aycpr
                         vals['total_pc_n_1']=company_fiscalyear_n_1.total_passif_circulant
                         vals['total_tp_n_1']=company_fiscalyear_n_1.total_treso_passif
                         vals['total_passif_n_1']=company_fiscalyear_n_1.total_passif
@@ -706,6 +721,8 @@ class sale_order(models.Model):
                     vals['tn_var'] = int(round((((vals['tn_n'] - vals['tn_n_1']) / vals['tn_n_1']) * 100)))
                 if isinstance(vals['rfd_n'], int) and isinstance(vals['rfd_n_1'], int) and vals['rsd_n_1'] != 0:
                     vals['rfd_var'] = int(round((((vals['rfd_n'] - vals['rfd_n_1']) / float(vals['rfd_n_1'])) * 100)))
+                if isinstance(vals['dfr_n'], int) and isinstance(vals['dfr_n_1'], int):
+                    vals['rfd_var'] = int(round((((vals['dfr_n'] - vals['dfr_n_1']) / float(vals['dfr_n_1'])) * 100)))
                 if isinstance(vals['lt_n'], float) and isinstance(vals['lt_n_1'], float) and vals['lt_n_1'] != 0:
                     vals['lt_var'] = int(round((((vals['lt_n'] - vals['lt_n_1']) / vals['lt_n_1']) * 100)))
                 if isinstance(vals['de_n'], float) and isinstance(vals['de_n_1'], float) and vals['de_n_1'] != 0:
@@ -720,6 +737,8 @@ class sale_order(models.Model):
                     vals['rncaff_var'] = int(round((((vals['rncaff_n'] - vals['rncaff_n_1']) / vals['rncaff_n_1']) * 100)))
                 if isinstance(vals['cexp_n'], float) and isinstance(vals['cexp_n_1'], float) and vals['cexp_n_1'] != 0:
                     vals['cexp_var'] = int(round((((vals['cexp_n'] - vals['cexp_n_1']) / vals['cexp_n_1']) * 100)))
+                    # if vals['cexp_var']< 50:
+                    #     vals['cexp_var'] = vals['cexp_var']
 
                 infos.append(vals)
         return infos

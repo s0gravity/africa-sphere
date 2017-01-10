@@ -18,7 +18,7 @@ class sphere_company_fiscalyear(models.Model):
     turnover_y2 = fields.Float(string="TURNOVER YEAR -2",digits=(6,2))
     net_result_y1 = fields.Float(string="NET RESULT YEAR -1",digits=(6,2))
     net_result_y2 = fields.Float(string="NET RESULT YEAR -2",digits=(6,2))
-    scoring = fields.Float(string="@SPHERE ONGOING SCORING",digits=(6,2))
+    scoring = fields.Char(string="@SPHERES ONGOING SCORING")
     #finance
 
     #ACTIONNAIRES
@@ -75,8 +75,8 @@ class sphere_company_fiscalyear(models.Model):
     vds = fields.Float(string="Variation de Stocks",digits=(6,2))
     other_charges = fields.Float(string="AUTRES DEPENSES",digits=(6,2),compute="_other_charges")
     td = fields.Float(string="Transport & Déplacement",digits=(6,2))
-    seosa = fields.Float(string="Services Extérieur (OHAOa Serv. A)",digits=(6,2))
-    seosb = fields.Float(string="Services Extérieur (OHAOa Serv. B)",digits=(6,2))
+    seosa = fields.Float(string="Services Extérieur (OHADA Serv. A)",digits=(6,2))
+    seosb = fields.Float(string="Services Extérieur (OHADA Serv. B)",digits=(6,2))
     ac1 = fields.Float(string="Autres Charges",digits=(6,2))
     it = fields.Float(string="IMPOTS et TAXES",digits=(6,2))
     cp = fields.Float(string="CHARGES DU PERSONNEL",digits=(6,2))
@@ -160,7 +160,7 @@ class sphere_company_fiscalyear(models.Model):
     @api.one
     @api.depends('ampmc','vds','other_charges','it','ap','total_charges_exp','cf','ch')
     def _total_charges(self):
-        self.total_charges = self.ampmc + self.vds + self.other_charges + self.it + self.ap + self.total_charges_exp + self.cf + self.ch
+        self.total_charges = self.ampmc + self.vds + self.other_charges + self.it + self.ap + self.total_charges_exp + self.cf + self.ch + self.cp
 
     @api.one
     @api.depends('total_charges','total_products')
@@ -182,7 +182,7 @@ class sphere_company_fiscalyear(models.Model):
     @api.depends('total_charges','total_products')
     def _rd(self):
         rd = self.total_products - self.total_charges
-        self.rd = rd < 0 and (rd)*-1 or 0.00
+        self.rd = rd < 0 and rd or 0.00
 
     @api.one
     @api.constrains('cap','dfr','dfes','ad','pca','cs','act_cna','ran','ra','reserves','arpc','df','aycpr','bcc','stock','fav','customers','cfes','ac','cca','tr_bt','fdc_br_log','ci','miia','mdbmi','mdtem','af','other_actif','bcctdp')

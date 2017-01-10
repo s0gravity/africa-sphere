@@ -229,7 +229,7 @@
                                                                                          <separator string="Charges Financières" colspan="4"/>
                                                                                         <field name="cf"/>
                                                                                         <field name="rfb"/>
-                                                                                        <separator string="Charges HAD" colspan="4"/>
+                                                                                        <separator string="Charges HAO" colspan="4"/>
                                                                                         <field name="ch"/>
                                                                                         <field name="rhb"/>
                                                                                         <separator string="TOTAL DES CHARGES" colspan="4"/>
@@ -262,7 +262,7 @@
                                                                                          <separator string="Produits Financiers" colspan="4"/>
                                                                                         <field name="pf"/>
                                                                                         <field name="rfd"/>
-                                                                                        <separator string="Produits HAD" colspan="4"/>
+                                                                                        <separator string="Produits HAO" colspan="4"/>
                                                                                         <field name="ph"/>
                                                                                         <field name="rhd"/>
                                                                                         <separator string="TOTAL DES PRODUITS" colspan="4"/>

@@ -14,20 +14,21 @@
                             <page string="INFORMATIONS CLIENTS / REF. DE LA DEMANDE " >
                                 <group col="4">
                                     <group colspan="2">
-                                        <field name="document_to" readonly="1"/>
+                                        <field name="document_to"/>
                                     </group>
                                     <group colspan="2">
-                                        <field name="customer_internal_code" readonly="1"/>
+                                        <field name="customer_internal_code" />
                                     </group>
                                     <group colspan="2">
-                                        <field name="partners_ref" readonly="1"/>
-                                        <field name="request_date" readonly="1"/>
-                                        <field name="response_date" readonly="1"/>
+                                        <field name="partners_ref" />
+                                        <field name="request_date" />
+                                        <field name="response_date" />
                                         <field name="response_delay" readonly="1"/>
                                     </group>
                                     <group colspan="2">
-                                        <field name="credit_rec" readonly="1"/>
-                                        <field name="credit_solicite" readonly="1"/>
+                                        <field name="credit_currency_id"/>
+                                        <field name="credit_rec" />
+                                        <field name="credit_solicite"/>
                                         <field name="credit_approval_percent" readonly="1"/>
                                     </group>
                                 </group>
@@ -36,27 +37,27 @@
                                 <group col="4">
                                     <group colspan="2">
                                         <separator string="Forces" colspan="2"/>
-                                        <field name="strenght1" readonly="1"/>
-                                        <field name="strenght2" readonly="1"/>
-                                        <field name="strenght3" readonly="1"/>
-                                        <field name="strenght4" readonly="1"/>
-                                        <field name="strenght5" readonly="1"/>
+                                        <field name="strenght1" />
+                                        <field name="strenght2" />
+                                        <field name="strenght3" />
+                                        <field name="strenght4" />
+                                        <field name="strenght5" />
                                     </group>
                                     <group colspan="2">
                                         <separator string="Faiblesses" colspan="2"/>
-                                        <field name="weakness1" readonly="1"/>
-                                        <field name="weakness2" readonly="1"/>
-                                        <field name="weakness3" readonly="1"/>
-                                        <field name="weakness4" readonly="1"/>
-                                        <field name="weakness5" readonly="1"/>
+                                        <field name="weakness1" />
+                                        <field name="weakness2" />
+                                        <field name="weakness3" />
+                                        <field name="weakness4" />
+                                        <field name="weakness5" />
                                     </group>
                                     <group colspan="2">
                                         <separator string="Dynamisme à Court Terme" colspan="2"/>
-                                        <field name="short_term_dyn" nolabel="1" readonly="1"/>
+                                        <field name="short_term_dyn" nolabel="1" />
                                     </group>
                                     <group colspan="2">
                                         <separator string="Risques Potentiels à Court Terme" colspan="2"/>
-                                        <field name="short_term_risks" nolabel="1" readonly="1"/>
+                                        <field name="short_term_risks" nolabel="1" />
                                     </group>
                                 </group>
                             </page>
@@ -66,16 +67,16 @@
                                     <group colspan="4">
                                         <field name="principal_partner_ids" nolabel="1" readonly="1">
                                             <tree string="LES PRINCIPAUX PARTENAIRES" editable="bottom">
-                                                <field name="type_id" readonly="1"/>
-                                                <field name="name" readonly="1"/>
-                                                <field name="country" readonly="1"/>
-                                                <field name="comment" readonly="1"/>
+                                                <field name="type_id" />
+                                                <field name="name" />
+                                                <field name="country" />
+                                                <field name="comment" />
                                             </tree>
                                         </field>
                                     </group>
                                     <separator string="COMMENTAIRES" colspan="4"/>
                                     <group colspan="4">
-                                        <field name="comment_sphere" nolabel="1" readonly="1"/>
+                                        <field name="comment_sphere" nolabel="1" />
                                     </group>
                                 </group>
                             </page>
@@ -83,21 +84,21 @@
                                 <group col="4">
                                     <separator string="RATIOS D'ANALYSE" colspan="4"/>
                                     <group colspan="2">
-                                        <field name="ratio_fond_roulement" readonly="1"/>
-                                        <field name="ratio_besoin_fond_roulement" readonly="1"/>
-                                        <field name="ratio_treso_net" readonly="1"/>
-                                        <field name="ratio_liquid_test" readonly="1"/>
-                                        <field name="ratio_autonomie_financiere" readonly="1"/>
-                                        <field name="ratio_rn_caff_ht" readonly="1"/>
-                                        <field name="ratio_capacite_fin" readonly="1"/>
+                                        <field name="ratio_fond_roulement" />
+                                        <field name="ratio_besoin_fond_roulement"  />
+                                        <field name="ratio_treso_net"  />
+                                        <field name="ratio_liquid_test"  />
+                                        <field name="ratio_autonomie_financiere"  />
+                                        <field name="ratio_rn_caff_ht"  />
+                                        <field name="ratio_capacite_fin"  />
                                     </group>
                                     <group colspan="2">
-                                        <field name="ratio_rotation_stock" readonly="1"/>
-                                        <field name="ratio_clients" readonly="1"/>
-                                        <field name="ratio_rotation_fournisseurs" readonly="1"/>
-                                        <field name="ratio_degree_endettement" readonly="1"/>
-                                        <field name="ratio_dettes_fin_cafg" readonly="1"/>
-                                        <field name="ratio_cont_exp" readonly="1"/>
+                                        <field name="ratio_rotation_stock"  />
+                                        <field name="ratio_clients"  />
+                                        <field name="ratio_rotation_fournisseurs"  />
+                                        <field name="ratio_degree_endettement"  />
+                                        <field name="ratio_dettes_fin_cafg"  />
+                                        <field name="ratio_cont_exp"  />
                                     </group>
                                 </group>
                             </page>

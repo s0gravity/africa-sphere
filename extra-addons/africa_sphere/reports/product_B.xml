@@ -274,7 +274,7 @@
                                     <td><span t-field="o.request_date"/></td>
                                     <td>ENCOURS CREDIT SOLLICITE</td>
                                     <td><span t-field="o.credit_solicite"/></td>
-                                    <td></td>
+                                    <td><span t-field="o.credit_currency_id.symbol"/></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -282,7 +282,7 @@
                                     <td><span t-field="o.response_date"/></td>
                                     <td>ENCOURS CREDIT RECOMMANDE PAR @SPHERES</td>
                                     <td><span t-field="o.credit_rec"/></td>
-                                    <td></td>
+                                    <td><span t-field="o.credit_currency_id.symbol"/></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -1207,8 +1207,8 @@
                                     <t t-if="o.ratio_rotation_fournisseurs == 'red' "><td class="bg_red_img"></td></t>
                                     <t t-if="o.ratio_rotation_fournisseurs not in ['red','orange','green']"><td></td></t>
                                     <td colspan="2">= ROTATION DES FOURNISSEURS en jours</td>
-                                    <td><t t-if="company['rfd_n']!=0"><span><t t-esc="o.sep_i(company['rfd_n'])"/></span></t></td>
-                                    <td><t t-if="company['rfd_n_1']!=0"><span><t t-esc="o.sep_i(company['rfd_n_1'])"/></span></t></td>
+                                    <td><t t-if="company['dfr_n']!=0"><span><t t-esc="o.sep_i(company['dfr_n'])"/></span></t></td>
+                                    <td><t t-if="company['dfr_n_1']!=0"><span><t t-esc="o.sep_i(company['dfr_n_1'])"/></span></t></td>
                                     <td><t t-if="company['rfd_var']!=0"><span><t t-esc="o.sep_i(company['rfd_var'])"/></span>%</t></td>
                                 </tr>
                             </table>
@@ -1392,7 +1392,7 @@
                                     <t t-if="o.ratio_cont_exp == 'orange' "><td class="bg_orange_img"></td></t>
                                     <t t-if="o.ratio_cont_exp == 'red' "><td class="bg_red_img"></td></t>
                                     <t t-if="o.ratio_cont_exp not in ['red','orange','green']"><td></td></t>
-                                    <td colspan="2">= CONTINUE EXPLOITATION EN % (&gt; 50%)</td>
+                                    <td colspan="2">= CONTINUITE EXPLOITATION EN % (&gt; 50%)</td>
                                     <td><t t-if="company['cexp_n']!=0"><span><t t-esc="o.sep_f(company['cexp_n'])"/></span></t></td>
                                     <td><t t-if="company['cexp_n_1']!=0"><span><t t-esc="o.sep_f(company['cexp_n_1'])"/></span></t></td>
                                     <td><t t-if="company['cexp_var']!=0"><span><t t-esc="o.sep_i(company['cexp_var'])"/></span>%</t></td>
@@ -1451,14 +1451,14 @@
                                     <t t-if="o.ratio_capacite_fin not in ['red','orange','green']"><td></td></t>
                                 </tr>
                             </table>
-                            <table class="table_end_report common_style">
+                            <!--<table class="table_end_report common_style">
                                 <tr>
                                     <td>DOCUMENT STRICTEMENT DESTINE A L'USAGE EXCLUSIF DU PARTENAIRE MENTIONNE AU POINT C/</td>
                                 </tr>
                                 <tr>
                                     <td>NOTRE RESPONSABLE EST DEGAGEE EN CAS D'INCIDENT OCCASIONNE PAR LA DIFFUSION OU LA PUBLICATION A AUTRUI PAR LEDIT PARTENAIRE</td>
                                 </tr>
-                            </table>
+                            </table>-->
                         </table>
                         <!--/t-->
                         <t t-set="i" t-value="i+1"/>
