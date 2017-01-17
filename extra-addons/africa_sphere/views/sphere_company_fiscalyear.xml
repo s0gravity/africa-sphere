@@ -149,7 +149,7 @@
                                                         <separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
                                                         <field name="ap"/>
                                                         <separator string="TOTAL CHARGES D'EXPLOITATION" colspan="4"/>
-                                                        <field name="total_charges_exp"/>
+                                                        <field name="total_charges_exp" readonly="1"/>
                                                         <field name="reb"/>
                                                          <separator string="Charges Financières" colspan="4"/>
                                                         <field name="cf"/>
@@ -183,7 +183,7 @@
                                                         <!--<separator string="AMORTISSEMENT ET PROVISIONS" colspan="4"/>
                                                         <field name="aprov"/>-->
                                                         <separator string="Total Produits d'Exploitation" colspan="4"/>
-                                                        <field name="total_exp_products"/>
+                                                        <field name="total_exp_products" readonly="1"/>
                                                         <field name="red"/>
                                                          <separator string="Produits Financiers" colspan="4"/>
                                                         <field name="pf"/>

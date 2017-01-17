@@ -81,7 +81,7 @@ class sphere_company_fiscalyear(models.Model):
     it = fields.Float(string="IMPOTS et TAXES",digits=(6,2))
     cp = fields.Float(string="CHARGES DU PERSONNEL",digits=(6,2))
     ap = fields.Float(string="AMORTISSEMENT ET PROVISIONS",digits=(6,2))
-    total_charges_exp = fields.Float(string="TOTAL CHARGES D'EXPLOITATION",digits=(6,2))
+    total_charges_exp = fields.Float(string="TOTAL CHARGES D'EXPLOITATION",digits=(6,2),compute="_total_charges_exp")
     reb = fields.Float(string="Résultat d'Exploitation Bénéficiaire",digits=(6,2),compute="_reb")
     cf = fields.Float(string="Charges Financières",digits=(6,2))
     rfb = fields.Float(string="Résultat Finiancier Bénéficiaire",digits=(6,2),compute="_rfb")
@@ -102,7 +102,7 @@ class sphere_company_fiscalyear(models.Model):
     tdc = fields.Float(string="TRANSFERT DE CHARGES",digits=(6,2))
     rap = fields.Float(string="REPRISE D'AMMORTISSEMENTS ET PROVISIONS",digits=(6,2))
     #aprov = fields.Float(string="AMMORTISSEMENTS ET PROVISIONS",digits=(6,2))
-    total_exp_products = fields.Float(string="Total Produits d'Exploitation",digits=(6,2))
+    total_exp_products = fields.Float(string="Total Produits d'Exploitation",digits=(6,2),compute="_total_exp_products")
     red = fields.Float(string="Résultat d'Exploitation Déficitaire",digits=(6,2),compute="_red")
     pf = fields.Float(string="Produits Financiers",digits=(6,2))
     rfd = fields.Float(string="Résultat Financier Déficitaire",digits=(6,2),compute="_rfd")
@@ -111,6 +111,16 @@ class sphere_company_fiscalyear(models.Model):
     total_products = fields.Float(string="TOTAL DES PRODUITS",digits=(6,2),compute="_total_products")
     rd = fields.Float(string="RESULTAT DEFICITAIRE",digits=(6,2),compute="_rd")
 
+
+    @api.one
+    @api.depends('vmp','stf','other_products','tdc','rap')
+    def _total_exp_products(self):
+        self.total_exp_products = self.vmp + self.stf + self.other_products + self.tdc + self.rap
+
+    @api.one
+    @api.depends('ampmc','vds','other_charges','it','cp','ap')
+    def _total_charges_exp(self):
+        self.total_charges_exp = self.ampmc + self.vds + self.other_charges + self.it + self.cp + self.ap
 
     @api.one
     @api.depends('tr_bt','fdc_br_log','ci','miia','mdbmi','mdtem','af','other_actif')
@@ -160,12 +170,12 @@ class sphere_company_fiscalyear(models.Model):
     @api.one
     @api.depends('ampmc','vds','other_charges','it','ap','total_charges_exp','cf','ch')
     def _total_charges(self):
-        self.total_charges = self.ampmc + self.vds + self.other_charges + self.it + self.ap + self.total_charges_exp + self.cf + self.ch + self.cp
+        self.total_charges = self.total_charges_exp + self.cf + self.ch
 
     @api.one
     @api.depends('total_charges','total_products')
     def _rb(self):
-        rb = self.total_products - self.total_charges
+        rb = self.total_products - self.total_charges - self.islr
         self.rb = rb > 0 and rb or 0.00
 
     @api.one
@@ -176,12 +186,12 @@ class sphere_company_fiscalyear(models.Model):
     @api.one
     @api.depends('vmp','stf','other_products','tdc','rap','total_exp_products','pf','ph')
     def _total_products(self):
-        self.total_products = self.vmp + self.stf + self.other_products + self.tdc + self.rap + self.total_exp_products + self.pf + self.ph
+        self.total_products =  self.total_exp_products + self.pf + self.ph
 
     @api.one
     @api.depends('total_charges','total_products')
     def _rd(self):
-        rd = self.total_products - self.total_charges
+        rd = self.total_products - self.total_charges - self.islr
         self.rd = rd < 0 and rd or 0.00
 
     @api.one
@@ -193,7 +203,7 @@ class sphere_company_fiscalyear(models.Model):
     @api.one
     @api.constrains('ra','vmp','stf','pa','subv','ap1','psi','tdc','rap','total_exp_products','pf','ph','ampmc','vds','td','seosa','seosb','ac1','it','ap','total_charges_exp','cf','ch')
     def _check_net_result(self):
-        if self.ra != self.rd and self.ra != self.rb:
+        if abs(self.ra) != abs(self.rd) and abs(self.ra) != abs(self.rb):
             raise exceptions.ValidationError("le résultat Net du Bilan et du Compte de résultat ne sont pas les mêmes ! ( "+str(self.ra)+" / "+str(self.rd != 0 and self.rd or self.rb)+" )")
 
     @api.one
@@ -206,7 +216,7 @@ class sphere_company_fiscalyear(models.Model):
     @api.depends('total_charges_exp','total_exp_products')
     def _red(self):
         red = self.total_exp_products - self.total_charges_exp
-        self.red = red < 0 and red or 0.004
+        self.red = red < 0 and red or 0.00
 
     @api.one
     @api.depends('pf','cf')
