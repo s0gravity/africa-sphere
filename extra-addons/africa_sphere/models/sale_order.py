@@ -442,7 +442,8 @@ class sale_order(models.Model):
                         vals['total_ta_n']=company_fiscalyear_n.total_treso_actif
                         vals['total_actif_n']=company_fiscalyear_n.total_actif
                         # passif N
-                        vals['capital']=company_fiscalyear_n.capital
+                        vals['capital_n']=company_fiscalyear_n.capital
+                        vals['cap_propres_n']=company_fiscalyear_n.total_capitaux_perman - company_fiscalyear_n.df - company_fiscalyear_n.aycpr
                         vals['cs_n']=company_fiscalyear_n.cs
                         vals['act_cna_n']=company_fiscalyear_n.act_cna
                         vals['ran_n']=company_fiscalyear_n.ran
@@ -530,7 +531,7 @@ class sale_order(models.Model):
                         if vals['cs_n'] != 0:
                             vals['cexp_n'] = round((vals['cappro_n'] / vals['cs_n']) * 100,2)
                             if vals['cexp_n']< 50:
-                                vals['cexp_n'] = (vals['capital']/2) - (vals['capital'])
+                                vals['cexp_n'] = (vals['capital_n']/2) - (vals['cap_propres_n'])
                         vals['mrcaf_n']=vals['cappro_n']/2-vals['total_cp_n']
 
                 if self.company_fiscalyear_id2:
@@ -560,7 +561,8 @@ class sale_order(models.Model):
                         vals['total_ta_n_1']=company_fiscalyear_n_1.total_treso_actif
                         vals['total_actif_n_1']=company_fiscalyear_n_1.total_actif
                         # passif N-1
-                        vals['capital']=company_fiscalyear_n_1.capital
+                        vals['capital_n_1']=company_fiscalyear_n_1.capital
+                        vals['cap_propres_n_1']=company_fiscalyear_n_1.total_capitaux_perman - company_fiscalyear_n_1.df - company_fiscalyear_n_1.aycpr
                         vals['cs_n_1']=company_fiscalyear_n_1.cs
                         vals['act_cna_n_1'] = company_fiscalyear_n_1.act_cna
                         vals['ran_n_1']=company_fiscalyear_n_1.ran
@@ -647,6 +649,8 @@ class sale_order(models.Model):
                         vals['cappro_n_1'] = vals['total_cp_n_1'] - vals['df_n_1']
                         if vals['cs_n_1'] != 0:
                             vals['cexp_n_1'] = round((vals['cappro_n_1'] / vals['cs_n_1']) * 100,2)
+                            if vals['cexp_n_1']< 50:
+                                vals['cexp_n_1'] = (vals['capital_n_1']/2) - (vals['cap_propres_n_1'])
                         vals['mrcaf_n_1'] = vals['cappro_n_1'] / 2 - vals['total_cp_n_1']
 
                 # var actif
